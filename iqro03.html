@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<!-- ||**********************|| -->
+<!-- || Madura Creator       || -->
+<!-- || beach.jm02@gmail.com || -->
+<!-- ||**********************|| -->
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri&display=swap" rel="stylesheet">
+  <title>IQRA 3</title>
+  <link rel="icon" type="image/png" href="https://github.com/adirasa-jumiang/rapor-ra/blob/main/ADIRASA.png?raw=true">
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      direction: ltr;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    body.fade-in {
+      opacity: 1;
+    }
+
+    body.fade-out {
+      opacity: 0;
+    }
+
+    @font-face {
+      font-family: 'AmiriCustom';
+      src: url('fonts/Amiri-Regular.ttf') format('truetype');
+    }
+
+    .item {
+      font-family: 'AmiriCustom';
+    }
+
+    header, footer {
+      position: fixed;
+      left: 0;
+      right: 0;
+      /* background: linear-gradient(135deg, #8b0000, #c62828); */
+      background: linear-gradient(to right, black, rgb(3, 3, 160), black);
+      color: white;
+      padding: 10px 15px;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    header {
+      top: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer {
+      bottom: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    main {
+      padding: 60px 10px 60px;
+      transition: margin-left 0.3s;
+    }
+    .line {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      border-bottom: 1px solid #ccc;
+      margin: 10px 0;
+      padding: 10px;
+    }
+    .item {
+      font-size: 32px;
+      margin: 5px 10px;
+      cursor: pointer;
+      padding: 5px 10px;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+    .item.active {
+      /* background-color: #f44336;
+      color: white; */
+      background: var(--active-color, #ffd54f);
+      color: var(--active-text, #000);
+      transition: background 0.3s ease;
+    }
+    .button {
+      font-size: 20px;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+    @media (max-width: 500px) {
+    .button-kiri {
+      display: none;
+    }
+    .button-kanan {
+      display: none;
+    }
+    }
+
+.page-frame {
+  border: 5px solid rgb(14, 14, 14);
+  padding: 20px;
+  margin: 10px;
+  background: white;
+  min-height: 70vh;
+  position: relative;
+  overflow: hidden; /* penting */
+} 
+
+.page-frame::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border: 2px solid rgb(14, 14, 14);
+  pointer-events: none;   /* 🔥 PENTING */
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 60px;
+  /* background: linear-gradient(180deg, #7b1e1e, #a83232); */
+  background: linear-gradient(180deg, #130101, #3240a8);
+  color: white;
+  /* padding-top: 60px; */
+  transition: 0.3s;
+  z-index: 2000;
+  box-shadow: 4px 0 15px rgba(0,0,0,0.3);
+}
+
+.sidebar-header {
+  text-align: right;
+  padding: 15px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  z-index: 1500;
+}
+
+#overlay.active {
+  display: block;
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar a {
+  display: block;
+  padding: 12px 20px;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  transition: 0.2s;
+}
+
+.sidebar a:hover {
+  color: yellow;
+  padding-left: 45px;
+  background: rgba(255,255,255,0.15);
+}
+
+.menu-btn {
+  font-size: 22px;
+  cursor: pointer;
+}
+/* =========== */
+.page-content {
+  position: relative;
+}
+
+/* animasi masuk dari kanan */
+.slide-in-right {
+  animation: slideRight 0.35s ease forwards;
+}
+
+/* animasi masuk dari kiri */
+.slide-in-left {
+  animation: slideLeft 0.35s ease forwards;
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+/* warna pilihan */
+.color-option {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid white;
+  transition: transform 0.2s ease;
+}
+
+.color-option:hover {
+  transform: scale(1.2);
+}
+
+.text-color-option {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid white;
+  transition: transform 0.2s ease;
+}
+
+.text-color-option:hover {
+  transform: scale(1.2);
+}
+/* ===== LAYOUT UTAMA ===== */
+.app-layout {
+  display: flex;
+  /* margin-top: 60px;   /* tinggi header */
+  /* margin-bottom: 60px; /* tinggi footer */
+  background: white;
+  height: calc(100vh - 120px);
+  overflow: hidden;
+}
+
+/* Drawer kiri */
+.page-drawer {
+  width: 0;
+  background: silver;
+  color: rgb(3, 1, 19);
+  overflow-y: auto;
+  transition: width 0.3s ease;
+}
+
+.page-drawer.open {
+  width: 220px;
+}
+
+/* Konten */
+.content-area {
+  flex: 1;
+  overflow-y: auto;
+  transition: 0.3s;
+  padding: 10px;
+}
+
+/* ===== */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  z-index: 1500;
+}
+
+.overlay.show {
+  display: block;
+}
+/*
+.active-page {
+ /* background: #444; 
+  background: yellow;
+  font-weight: bold; 
+} */
+.active-page:hover {
+  background: yellow;
+}
+
+/*.page-list li.active-page {
+  background: gold;
+  font-weight: bold;
+} */
+.page-list li.active-page {
+  background: gold;
+  font-weight: bold;
+  animation: highlightPage 0.4s ease;
+}
+
+@keyframes highlightPage {
+  from {
+    background: orange;
+  }
+  to {
+    background: gold;
+  }
+}
+
+.page-list li {
+  list-style: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.page-list li:hover {
+  background: rgba(0,0,0,0.1);
+}
+
+/* progress bar halaman */
+.progress-bar {
+  height: 4px;
+  background: #ddd;
+  position: fixed;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: gold;
+  transition: width 0.3s;
+}
+
+/*  css img dll   */
+.item img {
+  max-width: 100px;
+  display: block;
+  margin: auto;
+}
+  </style>
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <span onclick="toggleMenu()">✖</span>
+      </div><center>MENU IQRO</center><hr>
+          <a href="index.html">📖 IQRO 1</a>
+          <a href="iqro02.html">📖 IQRO 2</a>
+          <a href="#">📖 IQRO 3</a>
+          <a href="iqro04.html">📖 IQRO 4</a>
+          <a href="iqro05.html">📖 IQRO 5</a>
+          <a href="iqro06.html">📖 IQRO 6</a>
+        <hr>
+          <a href="https://ra-adirasa.blogspot.com/">⚙️ RA ADIRASA</a>
+          <a href="about.html">⚙️ Tentang Aplikasi</a>
+          <div style="margin-top:20px;">
+  <strong>🎨 Warna Penunjuk :</strong>
+  <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap; padding-left: 20px;">
+    
+    <div class="color-option" data-color="#ffd54f" style="background:#ffd54f;"></div>
+    <div class="color-option" data-color="#4caf50" style="background:#4caf50;"></div>
+    <div class="color-option" data-color="#2196f3" style="background:#2196f3;"></div>
+    <div class="color-option" data-color="#e91e63" style="background:#e91e63;"></div>
+    <div class="color-option" data-color="#ff5722" style="background:#ff5722;"></div>
+    
+  </div>
+</div>
+  
+  <div style="margin-top:20px;">
+  <strong>✍ Warna Tulisan Aktif :</strong>
+  <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap; padding-left: 20px;">
+    
+    <div class="text-color-option" data-color="#000000" style="background:#000000;"></div>
+    <div class="text-color-option" data-color="#ffffff" style="background:#ffffff; border:1px solid #ccc;"></div>
+    <div class="text-color-option" data-color="#d32f2f" style="background:#d32f2f;"></div>
+    <div class="text-color-option" data-color="#1b5e20" style="background:#1b5e20;"></div>
+    <div class="text-color-option" data-color="#0d47a1" style="background:#0d47a1;"></div>
+    
+  </div>
+</div>
+<hr>
+  <div>
+    <strong>✍ Ukuran Tulisan :</strong><br><center>
+    <button class="button" onclick="changeFont(-2)">A-</button>
+    <button class="button" onclick="resetFont()">A</button>
+    <button class="button" onclick="changeFont(2)">A+</button></center>
+  </div>
+<br><br>
+
+  </div>
+
+  <header>
+    <!-- tambahan pro -->
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <!-- akhir pro -->
+    <div>
+      <span class="menu-btn" onclick="toggleMenu()">☰</span>
+      <strong style="margin-left:10px; font-size: large; color: yellow;">IQRA 3</strong>
+    </div>
+    <div><b>بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</b></div>
+    <div>
+      <label>
+        <input type="checkbox" id="soundToggle" checked>
+        Suara
+      </label>
+    </div>
+  </header>
+
+  <main class="app-layout">
+  <!-- halaman -->
+<div class="page-drawer" id="pageDrawer">
+  <div class="drawer-header">
+    📖 Daftar Halaman
+  </div>
+
+  <ul class="page-list" id="pageList">
+    <!-- <li onclick="goToPage(0)" class="active-page">Halaman </li> -->
+  </ul>
+</div>
+
+<!-- konten utama -->
+ <div class="content-area">  
+  <div class="page-frame">
+    <div id="content" class="page-content"></div>
+  </div>
+  </div>
+  </main>
+
+<footer>
+  <button class="button-kiri" id="openPageList"><font style="font-size: small;">Madura@Creator</font></button>
+  <button class="button" onclick="changePage(-1)"><<</button>
+
+  <span>
+    Halaman 
+    <input type="number" id="jumpPage" min="1" style="width:50px">
+    / <span id="totalPage"></span>
+  </span>
+
+  <button class="button" onclick="changePage(1)">>></button>
+
+  <!-- 🔥 Tambahan kontrol font -->
+  <div>
+    <button class="button-kanan" onclick="changeFont(-2)">A-</button>
+    <button class="button-kanan" onclick="resetFont()">A</button>
+    <button class="button-kanan" onclick="changeFont(2)">A+</button>
+  </div>
+</footer>
+
+<script>
+  const pages = [
+    [
+      ['PETUNJUK MENGAJAR JILID 3'],
+      ['<font style="font-size: 80px">اِقْـرَأْ</font>'],
+      ['1. Sistem'],
+      ['a. CBSA (Cara Belajar Santri Aktif) guru sebagai penyimak saja, jangan sampai menuntun, kecuali hanya memberikan contoh pokok pelajaran.'],
+      ['b. Privat. Penyimakan secara seorang demi seorang.'],
+      ['Catatan : Bila klasikal, santri dikelompokkan berdasarkan persamaan kemampuan/jilid. Guru menerangkan pokok-pokok pelajaran secara klasikal dengan menggunakan peraga, dan secara acak santri dimohon membaca bahan latihan.'],
+      ['c. asistensi Santri yang lebih tinggi jilidnya dapat membantu menyimak santri lainnya.'],
+      ['2. Mengenai judul-judul, guru langsung memberi contoh bacaannya, jadi tidak perlu banyak komentar.'],
+      ['3. Sekali huruf dibaca betul, tidak boleh/jangan diulang lagi.'],
+      ['4. Bila santri keliru panjang-panjang dalam membaca huruf, maka guru harus dengan tegas memperingatkan (sebab yang betul dengan pendek-pendek) dan membacanya agar diputus-putus, bila perlu ditekan.'],
+      ['5. Bila santri keliru membaca huruf, cukup betulkan huruf-huruf yang keliru saja, dengan cara :'],
+      ['- Isyarat, umpamanya dengan kata-kata "eee...awas...stop...dsb"'],
+      ['- Bila dengan isyarah masih tetap keliru, berilah titian ingatan. Umpamanya santri lupa baca huruf ( ز ) ustadz cukup mengingatkan titiknya yaitu "bila tidak ada titiknya dibaca RO ( ر )" dst. Bila masih tetap lupa, barulah ditunjukkan bacaan yang sebenarnya.'],
+      ['6. Pelajaran satu ini berisi pengenalan huruf berfathah, maka sebelum dikuasai benar, jangan naik ke jilid berikutnya. Sedangkan bila kemampuan maksimal tetap belum fasikh, maka sementara boleh :'],
+      [' شَ lebih diarahkan ke bunyi SIA daripada keliru سَ '],
+      [' ضَ lebih diarahkan ke bunyi DHO (kendor) daripada keliru ظَ '],
+      [' ظَ lebih diarahkan ke bunyi ذَ (dibaca dengan bibir agak maju)'],
+      [' قَ lebih diarahkan ke bunyi  KO daripada keliru خَ '],
+      ['  Jadi bisa naik ke pelajaran dua dengan "her" pada huruf-huruf tertentu.'],
+      ['7. Bagi santri yang betul-betul menguasai pelajaran dan sekiranya mampu berpacu dalam menyelesaikan belajarnya maka membacanya boleh diloncat-loncatkan, tidak harus utuh sehalaman.'],
+      ['8. Untuk EBTA, sebaiknya ditentukan guru pengujinya. Demikian, semoga sukses. Amin']
+    ],
+    [
+      ['Bi = بِ ', 'i = ـ ـِ ـ '],
+      ['SEMUA DIBACA PENDEK TIDAK BOLEH DIPANJANG-PANJANGKAN'],
+      ['مَـ مِ', 'نَ نِ', 'دَ دِ', 'تَ تِ'],
+      ['تِ تِ', 'تَ تِ', 'بِ بِ', 'بَ بَ'],
+      ['نَجَسِ', 'نَجَسَ', 'نَـبَتِ', 'نَـبَتَ'],
+      ['حَسَنِ', 'حَسَنَ', 'بَـلَدِ', 'بَـلَدَ'],
+      ['لَـزِمَـ', 'فَهِمَـ', 'شَـهِدَ', 'عَـمِلَ'],
+      ['بِ تِ جِ خَ دَ دِ فِ فِ اِ مَـ مِ']
+    ],
+    [
+      ['Ingat, jangan keliru. Mana bacaan MAD (yang panjang) Dan mana yang bukan MAD (yang pendek)'],
+      ['حَاسِدِ', 'حَسَدَ', 'فَاعِلِ', 'فَعَلَ'],
+      ['جَالِسِ', 'جَلَسَ', 'كَاتِبِ', 'كَتَبَ'],
+      ['قَارِئِ', 'قَـرَأَ', 'خَاطِبِ', 'خَطَبَ'],
+      ['مَالِكِ', 'مَالَكَ', 'بَايِنِ', 'بَايَنَ'],
+      ['شَاهِدِ', 'شَاهَدَ', 'عَالِـمِـ', 'عَالَـمَـ'],
+      ['بِـلَادِ', 'طِبَاقَ', 'جِـهَادِ', 'صِرَاطَ'],
+      ['غِفَارَ', 'فَاعِلِ', 'عِـمَادِ', 'لِبَاسِ']
+    ],
+    [
+      ['قَادِرَ', 'بَاطِلَ', 'عَاصِفَ', 'ثَابِتَ'],
+      ['نِعَامِـ', 'مِهَادِ', 'فِرَاشِ', 'جِـهَادَ'],
+      ['بَاطِنَ', 'ظَاهِرَ', 'نَاعِـمَـ', 'هَادِيَ'],
+      ['شِقَاقِ', 'خِيَامَ', 'فِصَالِ', 'كِرَامَـ'],
+      ['عَذَابِ', 'عِقَابَ', 'فَلَاقِ', 'لِـجَامَـ'],
+      ['نَاضِرَا', 'غَاسِقَا', 'سَاخِطَا', 'حَافِظَا'],
+      ['ثَاقِلَا', 'لَازِمَا', 'دَافِعَا', 'لَايِنَا'],
+      ['شَاطِئَهَا', 'عَابِدَاتِ', 'وَمَاهِيَ', 'قَانِتَاتِ']
+    ],
+    [
+      ['خَاشِعَاتِ', 'وَعَافِنِ', 'حَاضِرَاتِ'],
+      ['لَاعِبَاتِ', 'غِنَاعِيَا', 'عِقَابَـهَا'],
+      ['نَاشِطَاتِ', 'نَازِعَاتِ', 'رَافِعَاتِ'],
+      ['فَـمَالِئَ', 'وَمَالِيَ', 'صَادِقَاتِ'],
+      ['لَـوَاقِـعَ', 'فَوَاحِشَ', 'زَكَاتِكَ'],
+      ['جَارِيَاتِ', 'جَنَاحِكَ', 'فَهَالِكَ'],
+      ['مَضَاجِعَ', 'مَغَارِبَ', 'كَذٰلِكَ'],
+      ['مَرَاضِعِ', 'مَنَامِـهَا', 'لَـهَاتِفَ']
+    ],
+    [
+      ['رَضِيَ', 'غَنِمَـ', 'لَعِبَ', 'شَـهِدَ'],
+      ['كَاتِبَ', 'كِـتَابَ', 'فَاعِلِ', 'فِعَالَا'],
+      ['غَافِرِ', 'غِفَارَ', 'جَاهِدِ', 'جِهَادَ'],
+      ['Biar Pelan, asal betul ..... PANJANG_PENDEK - nya'],
+      ['طِبَاقَ', 'عَاطٰى', 'قَانِتَاتِ', 'لَاقٰى'],
+      ['بِشَارِكَ', 'حَاسِدِ', 'بَصَلِهَا', 'عَدَسِهَا'],
+      ['شَاطِئَـهَا', 'سَافِلَـهَا', 'عَالِيَـهَا', 'وَمَاهِيَ'],
+      ['مَوَالِيَ', 'عٰبِدٰتِ', 'فَيَتٰمٰى', 'قٰنِتٰتِ']
+    ],
+    [
+      ['Bii = بِيْ ', 'i = يْ /  ـ ـ ـ يْـ '],
+      ['Guru boleh mengenalkan nama YA\' sukun atau YA\' mati'],
+      ['فِ فِيْ', 'لِ لِيْـ', 'نِ نِيْ', 'جِ جِيْـ'],
+      ['قِيْتَالَا', 'قَاتَلَ', 'فِيْعَالَا', 'فَاعَلَ'],
+      ['يِيْسَارَا', 'يَاسَرَ', 'وِيْعَادَا', 'وَاعَدَ'],
+      ['Harus tepat ....... PANJANG PENDEK-nya! '],
+      ['قَـدِيْرِ', 'قَادِرَ', 'بَصِيْرِ', 'بَاصِرَ'],
+      ['حَكِيْمِ', 'حَاكِمَـ', 'سَمِيْعِ', 'سَامِعَ'],
+      ['صَغِيْرَا', 'كَبِيْرِ', 'نَـذِيْرِ', 'بَشِيْرَا']
+    ],
+    [
+      ['Bacaan yang PENDEK .....', 'Bacalah dengan BETUL-BETUL PENDEK'],
+      ['خَاشِعَاتِ', 'خَاشِعِيْنَ', 'خَشِعَ'],
+      ['صَغِيْرَكَ', 'خَاضِعِيْنَ', 'صَئِـمَـ'],
+      ['حَافِظَاتِ', 'حَفِظِيْنَ', 'حَفِظَ'],
+      ['طَالِبِـيْنَ', 'لَاَزِيْـدَ', 'زَبَـانِيَـةِ'],
+      ['صَادِقَاتِ', 'صَادِقِيْنَ', 'صَـدَقَ'],
+      ['حَاضِرَاتِ', 'حَاضِرِيْنَ', 'حَضَـرَ'],
+      ['لَاعِبَاتِ', 'لَاعِبِـيْنَ', 'لَعِبَ']
+    ],
+    [
+      ['Hii = هٖ = ـ ـ ـهٖ = ىـهٖـ = هٖـ '],
+      ['هٰـدِهٖ', 'لَفِيْـهِ', 'نَـهَرَ', 'هَلَكَ'],
+      ['فَكَـرِهَ', 'وَبِـهٖ', 'شَـهِدَ', 'هَـمَزَ'],
+      ['عِبَادِهٖ', 'اَبِيْـهِ', 'فِيْـهِمَا', 'هَدَمَ'],
+      ['BIAR PELAN ..... ASAL BENAR'],
+      ['بِبَالِغِـهٖ', 'فٖى جِيْدِهَا', 'لَاَزِيْـدَ'],
+      ['وَجَسَادِهٖ', 'بِضَنِـيْنِ', 'بِغَلِيْظِ'],
+      ['مِيْثَاقِهٖ', 'بِيَمِيْـنِكَ', 'وَطَاغِيْنَ']
+    ],
+    [
+      ['حِسَابِـهٖ', 'خَالِدِيْـنَ', 'طَاهِـرِيْنَ'],
+      ['شَـاهِدِهٖ', 'ثَاقِفِيْنَ', 'ظَالِمِيْنَ'],
+      ['اٰذَانِــهٖ', 'زَكَاتِكَ', 'لَـهَاتِفَ'],
+      ['فَـمَالِئَ', 'شَاطِئَـهَا', 'حَافِظِيْنَ'],
+      ['اَصَابِعِـهٖ', 'ذٰڪِرِيْنَ', 'طَالِبِـيْنَ'],
+      ['بِـزِيَـادِهٖ', 'مَوَالِيَ', 'فَهَالِكَ'],
+      ['بِنَـاصِرِهٖ', 'مَسَاكِيْنَ', 'فَيَتٰمٰى'],
+      ['ULANG-ULANGILAH ! SAMPAI TIADA KELIRU LAGI']
+    ],
+    [
+      ['ـ ـ ـ هِ = ـ ـ ـهِ = ـ ـ ـهِـ ـ ـ = هِـ ـ ـ'],
+      ['تِ = ـ ـ تِـ ـ ـ = ـ ـ ـةِ = ـ ـ ـ ةِ'],
+      ['غَـبَرَةِ', 'رَافِقَةِ', 'اٰخِـرَةِ', 'فَاتِحَةِ'],
+      ['حِجَارَةَ', 'اٰلِـهَـةِ', 'صَالِـحَ', 'عَامِـلَ'],
+      ['بَصَرِهٖ', 'وَاَبِيْـهِ', 'خَطَايَ', 'وَنَـادَ'],
+      ['غَاشِيَةِ', 'دَاحِضَةِ', 'مَحِيْصَا', 'عَقِيْمَا'],
+      ['وَلَـدِهٖ', 'طَعَامِهٖ', 'اٰمِـنِ', 'مَضَاجِعَ'],
+      ['قَـتَرَةِ', 'زَبَانِيَـةِ', 'مَرِيْضَا', 'بِصِحَافِ']
+    ],
+    [
+      ['Nii = نٖى ', 'ii = ـ ـٖ ـ '],
+      [' ى = Dianggap tidak ada'],
+      ['عَصَانٖى', 'حَامِيَةِ', 'بَصِـيْرِ', 'سَمِيْـعِ'],
+      ['بِبَـنٖى', 'حٰفِظٰتِ', 'خَبِـيْرَا', 'لَطِيْفَا'],
+      ['مَقَامٖى', 'بَطَئِـهٖ', 'صَغِيْرَكَ', 'شَفَاعَةَ'],
+      ['عَذَابٖى', 'نِعَاجِهٖ', 'حَكِيْمِـ', 'عَزِيْـزِ'],
+      ['كَاذِبَةِ', 'نَاصِيَةِ', 'قَـدِيْرِ', 'حَلِيْمِـ'],
+      ['فَطَرَنٖى', 'تِجَارَةَ', 'وِيْعَادَا', 'نَوَاصٖى'],
+      ['فٖى عَقِبِهٖ', 'فٖى نَارِهٖ', 'شَاطِئِ = شَاطِءِ']
+    ],
+    [
+      ['وَاٰلِـهَـتٖى', 'جَنَاحِكَ', 'لٰبِثِـيْنَ'],
+      ['بِمَفَازَتِـهٖ', 'وَزَڪَاةَ', 'خٰـطِئِيْنَ'],
+      ['بِنَاصِرِهٖ', 'فَـخَشِيْتَ', 'وَاعِظِيْنَ'],
+      ['فٖى زِيْنَتِهٖ', 'غِشَاوَةِ', 'شَيٰطِـيْنَ'],
+      ['وَخِلٰـلِهٖ', 'مَـرَاضِعِ', 'شَيٰطِـيْنَ'],
+      ['عَلٰى غَنَمٖى', 'صَلَوٰتِ', 'كَفٰى بِنَـا'],
+      ['عِبَادَتِهٖ', 'وَهٰـذِهٖ', 'خَاضِعِيْنَ'],
+      ['وَحَفِيْظَا', 'اَسَاطِيْرَ', 'اِذَاقَضٰى']
+    ],
+    [
+      ['بِاٰلِـهَتِنَا', 'سَـمٰوَاتِ', 'كَـذٰلِكَ'],
+      ['رَضِيَ لَـهَا', 'حَامِلٰتِ', 'فَبَاطِـلَ'],
+      ['بِضَنِـيْنِ', 'فَشَاطِئِ', 'عَاصِفَـةَ'],
+      ['بِـلِسَانِنَا', 'وَجَعَـلَنٖى', 'لَاحَـيٰوتَ'],
+      ['فَحِـجَابَا', 'وَطَاغِيْنَ', 'عِبَـادِهٖ'],
+      ['وَاَصِيْـلَا', 'هَامِـدَةَ', 'حٰفِظِـيْنَ'],
+      ['بِـيَمِيْـنِكَ', 'وَاِلٰــهِ', 'اَحَادِيْثَ'],
+      ['وَاٰخِـرِهٖ', 'صَاحِبَتِـهٖ', 'لِاَبِيْــهِ']
+    ],
+    [
+      ['Bu = بُ ', 'u = ـ ـُ ـ '],
+      ['جَ جِ جُ', 'تَ تِ تُ', 'بَ بِ بُ'],
+      ['دُ دِ دُ', 'دُ دِ دَ', 'دُ دِ دِ', 'دَ دِ دُ'],
+      ['كُتِبَ', 'كَتَبَ', 'فُعِـلَ', 'فَعَـلَ'],
+      ['ضُرِبَ', 'ضَرَبَ', 'قُـرِئَ', 'قَـرَأَ'],
+      ['ضَحُمَـ', 'يَمُـنَ', 'فَـهُوَ', 'حَسُنَ'],
+      ['لَـؤُمَـ = لَ اُ مَـ', 'قَـرُبَ', 'شَجُـعَ'],
+      ['رُسُـلُ', 'كَثُـرَ', 'عَظُمَـ', 'رَجُلُ']
+    ],
+    [
+      ['بَاسِطُ', 'قَابِضُ', 'بَارِئُ', 'خَالِقُ'],
+      ['جَلِيْلُ', 'حَفِيْظُ', 'عَظِيْمُـ', 'حَلِيْمُـ'],
+      ['بَقَـرَةِ', 'اٰتِيَـةِ', 'بَصَرِهٖ', 'وَاِلٰـهِ'],
+      ['مَاجِدِ', 'بَاعِثِ', 'وَاسِـعِ', 'رَافِـعِ'],
+      ['وَكِيْـلُ', 'شَـهِيْدُ', 'مَجِيْـدُ', 'رَقِيْبُ'],
+      ['مُجِيْبُ', 'مُقِيْتُ', 'مُمِيْتُ', 'مُعِيْدُ'],
+      ['نَوَاصٖى', 'سُكٰـرٰى', 'وَعِيْسٰى', 'رَوَاسِيَ'],
+      ['مُتَعَالٖى', 'بِاٰيٰـتٖى', 'عِبَادِهٖ', 'عَمَـلِهٖ']
+    ],
+    [
+      ['وَمُـهِيْنَـا', 'كَوَاكِبُ', 'ظُلُـمَاتِ'],
+      ['فَـخَشِيْتَ', 'حَامِلٰتِ', 'بِـمَثَـلِهٖ'],
+      ['وَيَـرِثُـهَا', 'سَيُصِيْبُ', 'مَقَالِيْـدُ'],
+      ['غَاشِيَةِ', 'مَايَغِيْظُ', 'صٰـدِقِيْنَ'],
+      ['فِصٰـلِهٖ', 'وَيُـمِيْتُ', 'بِغُـلَامِـ'],
+      ['بِكَلِمٰـتِهٖ', 'صَوَامِـعُ', 'سَرَابِيْـلَ'],
+      ['فِيْ صُحُفٖى', 'فَتُـثِيْرُ', 'سَتَجِدُنٖى'],
+      ['شِـيْعَتِهٖ', 'طَاعِمٖى', 'وَزَادَهُمَا']
+    ],
+    [
+      ['Buu = بُوْ ', 'uu = ـ ـُ ـو '],
+      ['Guru boleh mengenalkan nama WAU sukun atau WAU mati'],
+      ['يَقُوْلُ', 'قَـالَ', 'يَـتُوْبُ', 'تَابَ'],
+      ['يَكُوْنُ', 'كَانَ', 'يَـعُوْدُ', 'عَـادَ'],
+      ['لَمُقِيْـمٖى', 'يُقِيْـمُوْنَ', 'يُرِيْـدُوْنَ'],
+      ['بِنَـاصِرِهٖ', 'يَتَخَافَتُوْنَ', 'يَـتَلَاوَمُوْنَ'],
+      ['نِعَـاجِهٖ', 'يُغِيْـثُوْنَ', 'يُفِيْضُـوْنَ'],
+      ['يَـرِثُـنِى', 'رَاغِـبُوْنَ', 'سَامِدُوْنَ'],
+      ['تَـلُوْمُوْنٖى', 'فَعَـقَرُوْهَا', 'هُنَالِكَ']
+    ],
+    [
+      ['قَالُوْا', 'ا = Dianggap tidak ada'],
+      ['لَاتَخُوْنُوْا', 'فَاِذَارَكِبُوْا', 'قَالُـوْابَـلٰى'],
+      ['اٰمَنُوْاوَعَـمِلُوْا', 'ڪَانُوْالَنَـاعٰبِدِيْنَ'],
+      ['هَاجَرُوْاوَجَاهَدُوْا', 'صَابِرُوْاوَرَابِطُوْا'],
+      ['صَدَقُوْامَاعَاهَدُوْا', 'وَجَدُوْامَاعَـمِلُوْا'],
+      ['وَكَانُوْالَنَاخٰشِعِيْنَ', 'فَيَڪِيْدُوْالَكَ'],
+      ['قَالَ مَانَـهٰڪُمَا', 'فَلَاتَلُوْمُوْنِيْ وَلُـوْمُوْا'],
+      ['MAAF, JANGAN DITERUSKAN DULU ! bila masih keliru panjang - pendeknya']
+    ],
+    [
+      ['Huu = ٗـ ـ ـه ', '', 'uu = ـ ـٗ ـ '],
+      ['يَـرَهٗ', 'وَلَـهٗ', 'يَـدَهٗ', 'مَعَـهٗ'],
+      ['مَوَازِيْنُـهٗ', 'فِيْمَاكَانُوْا', 'اِذَاسَـجٰى'],
+      ['حَافِظِـيْنَ', 'وَعَجِـبُوْا', 'يَنَـابِيْـعَ'],
+      ['فِيْ جِيْـدِهَا', 'مُتَقَابِـلِيْنَ', 'وَنُسُكٖى'],
+      ['جُـنُوْدُهٗ', 'تُظٰـهِرُوْنَ', 'لَقُضِيَ'],
+      ['فَـمَثَـلُهٗ', 'وَاُتُـوْابِـهٖ', 'اُوْتِـيْتُهٗ'],
+      ['فَسَلَكَـهٗ', 'وَثَاقَـهٗ', 'وَلَايُوْثِـقُ']
+    ],
+    [
+      ['وَجَعَـلَهٗ', 'يُجِـيْزُوْنَ', 'اَجِـيْزُوْا'],
+      ['وَرَسُـوْلَهٗ', 'يُقِيْـمُوْنَ', 'اَقِيْـمُوْا'],
+      ['صَـلَاتَهٗ', 'يُفِيْـضُوْنَ', 'اَفِيْـضُوْا'],
+      ['اَمَـرَهٗ', 'يُطِيْـقُوْنَ', 'اَطِيْـقُوْا'],
+      ['فَـمَارَاٰى', 'يُطِـيْعُوْنَ', 'اَطِيْـعُوْا'],
+      ['فِيْ صُحُفٖى', 'يُمِيْـتُوْنَ', 'اَمِيْـتُوْا'],
+      ['فَـخَلَقَـهٗ', 'يُـزِيْـلُوْنَ', 'اَزِيْـلُوْا'],
+      ['WALAU LANCAR, TAPI TAK BENAR MAKA JANGAN DILANJUTKAN Ulangi sampai betul semua']
+    ],
+    [
+      ['لَيُوْفُوْنَ', 'يَسُوْقُـوْنَ', 'يَخَـافُوْنَ'],
+      ['يُغِيْـثُوْنَ', 'يُضِيْـعُوْنَ', 'يُحِيْطُوْنَ'],
+      ['لَـذُوْقُوْا', 'وَظَـلَمُوْا', 'فَجَـعَـلُوْا'],
+      ['فَعَقَرُوْهَا', 'لَنُـذِيْقَهٗ', 'جَـنَحُوْا'],
+      ['سَـتَجِدُنٖى', 'خٰطِئِـيْنَ', 'مَنَـامِـهَا'],
+      ['بِـيَمِيْـنِهٖ', 'فَطُوْبٰى', 'مَعِيْشَتَـهَا'],
+      ['وَارِثِـيْنَ', 'اِذَاقَـضٰى', 'مَنَـازِلَ'],
+      ['فَشَاطِئِ', 'شَـغَفَـهَا', 'بِجَـهَازِهٖ']
+    ],
+    [
+      ['مَفَاتِحَـهٗ', 'فَتُـثِيْرُ', 'نَاكِسُوْهُ'],
+      ['ڪِتَابَهٗ', 'ڪَالِحُوْنَ', 'فَوَكَـزَهٗ'],
+      ['لَايَـئُوْدُهٗ', 'شُخُوْمَـهُمَا', 'تَـذُوْدٰنِ'],
+      ['لَلَبِـثُوْا', 'سُـبُلَنَـا', 'صَـاغِرُوْنَ'],
+      ['خَرَقُوْالَـهٗ', 'لِمـَايُوْحٰى', 'خٰطِئِـيْنَ'],
+      ['تُبَـاشِرُوْا', 'رُءُوْسِـهَا', 'ظُـهُوْرِكَ'],
+      ['لَاتَـنَابَزُوْا', 'تَلُوْمُوْنِيْ', 'كٰـرِهُـوْنَ'],
+      ['وَيَـئِسُوْا', 'مَقَـالِيْـدُ', 'يُوْزَعُـوْنَ']
+    ],
+    [
+      ['لَيُوْسُفُ وَاَخُـوْهُ', 'وَاِذَاسَاَلـَكَ عِبَادِيْ'],
+      ['وَخَرَقُوْالَهٗ بَنِـيْنَ', 'نَسِـيَاحُوْتَـهُـمَا'],
+      ['كَفٰى بِنَـاحٰسِـبِيْنَ', 'اَرُوْنِيْ مَاذَاخَلَقُوْا'],
+      ['وَثُلٰثَ وَرُبٰـعَ', 'هٰـذِهٖ بِضَاعَتُـنَا'],
+      ['بِمَاكَسَبُوْامَاتَـرَكَ', 'قَالُوْاتَقَاسَـمُوْا'],
+      ['Membacanya boleh terputus-putus ASAL BENAR WALAU PELAN'],
+      ['لِبَاسَـهُمَالِيُرِيَـهُمَا', 'قَالَ مَانَـهٰڪُمَا'],
+      ['عَلٰى شَاڪِـلَتِـهٖ', 'صَلَاتَكَ = صَلٰوتَكَ']
+    ],
+    [
+      ['حَدِيْثُ مُوْسٰى', 'صَدَقُوْامَاعَاهَدُوْا'],
+      ['ڪَانَ عِقَابِ', 'كَفَـرُوْابِاٰيٰـتِنَا'],
+      ['قَالَ لَاتَـخَافَا', 'بِمَاخَلَقَ وَلَعَـلَا'],
+      ['مَتَاعِنَافَاَڪَلَهٗ', 'فَـمَايَكُوْنُ لَكَ'],
+      ['وَهَامٰنَ وَقَارُوْنَ', 'وَهُوَيَعِظُـهٗ'],
+      ['هٰـرُوْنَ وَمُوْسٰى', 'فِيْـهَافَوَاڪِهُ'],
+      ['وَلُعِنُوْابِمَاقَالُوْا', 'لَـهَامَالِڪُوْنَ'],
+      ['MAAF, ULANGILAH ..... ! Sampai benar semuanya. ']
+    ],
+    [
+      ['قَـالَ لَاغَالِبَ', 'فِيْ صُحُفِ مُوْسٰى'],
+      ['فَسَلَكَـهٗ يَنَابِيْـعَ', 'هٰـهُنَاقَاعِـدُوْنَ'],
+      ['وَلِيَ فِيْـهَامَاٰرِبُ', 'وَكَفٰى بِنَاحٰسِـبِيْنَ'],
+      ['يُـرِيْـدُوْاخِيَانَـتَـكَ', 'ڪَفَرُوْاسَـبَقُوْا'],
+      ['وَكَانُوْالَـنَاخٰشِعِيْنَ', 'صَدَقُوْامَاعَاهَدُوْا'],
+      ['اَحَدَنَامَڪَانَـهٗ', 'جَاهَدُوْاوَصَبَرُوْا'],
+      ['كَانُوْايُسَارِعُوْنَ', 'وَنَـاٰبِجَانِـبِـهٖ'],
+      ['وَمَاكَانُوْاسٰـبِقِيْنَ', 'مَاڪَادَيَـزِيْغُ']
+    ],
+    [
+      ['رَاغِـبُوْنَ', 'غٰـفِلُوْنَ', 'يَـتَلَاوَمُوْنَ'],
+      ['خٰطِئِـيْنَ', 'خٰشِعِـيْنَ', 'حٰفِظِـيْنَ'],
+      ['قَالَ لِاَبِيْـهِ', 'بِعِبَـادِهٖ', 'فِيْ بُطُوْنِـهٖ'],
+      ['لَايَـئُوْدُهٗ', 'وَسَـنَزِيْدُ', 'مَقَالِيْـدُ'],
+      ['فَتُـهَاجِرُوْا', 'هُوَيَعِظُهٗ', 'سَيُصِيْبُ'],
+      ['يَارَءُوْفُ', 'يَابَاعِثُ', 'يَامَجِيْـدُ'],
+      ['مَامَنَعَكَ', 'بِعَصَاكَ', 'وَكَـذٰلِكَ'],
+      ['يَامُتَعَالٖى', 'شِـيْعَتِـهٖ', 'وَجَعَـلَنٖى']
+    ],
+    [
+      ['كَانُوْافِيْـهَافٰكِهِـيْنَ', 'تُـرَاوِدُفَتٰـهَا'],
+      ['وَيَـقُوْلُوْنَ مَتٰى', 'وَحِيْنَ تَضَـعُوْنَ'],
+      ['تَابَ وَاٰمَنَ وَعَمِـلَ', 'هَدٰىنَاسُـبُلَـنَا'],
+      ['بِاٰيٰـتِنَايُوْقِنُوْنَ', 'فِيْـهَامَعَايِشَ'],
+      ['وَجَاهِدُوْافِيْ سَـبِيْلِهٖ', 'صَابِـرُوْاوَرَابِطُوْا'],
+      ['وَطُوْرِسِـيْنِيْنَ', 'فَقَعُوْالَهٗ سٰجِدِيْنَ'],
+      ['وَكُتُـبِهٖ وَرُسُـلِهٖ', 'اُوْذُوْافِيْ سَـبِيْـلِيْ'],
+      ['وَخَرَقُوْالَهٗ بَنِـيْنَ', 'لَسٰحِرَانِ يُرِيْـدَانِ']
+    ],
+    [
+      ['وَجَعَلَ فِيْـهَارَوَاسِيَ', 'وَيَـذَرَكَ وَاٰلِـهَتَكَ'],
+      ['فَعَلَ هٰذَابِاٰلِـهَتِنَا', 'هَارُوْتَ وَمَارُوْتَ'],
+      ['فَتَعَاطٰى فَعَـقَرَ', 'قَالُوْاتَقَاسَـمُوْا'],
+      ['كَانُوْافِيْهَافٰكِهِيْنَ', 'ڪَانَ قَمِيْصُـهٗ'],
+      ['وَكَفٰى بِنَاحٰسِـبِيْنَ', 'وَاِذَاسَاَلـَكَ عِبَادِيْ'],
+      ['وَصٰحِبَتِـهٖ وَبَنِيْـهِ', 'فَڪَانَ عَاقِبَتَهُمَا'],
+      ['وَيَخَافُوْنَ عَذَابَـهٗ', 'فَلَاتَلُوْمُوْنِيْ وَلُوْمُوْا'],
+      ['Jika belum benar semua, jangan diteruskan ke halaman EBTA. Coba diulangi lagi !']
+    ],
+    [
+      ['EBTA', 'Salah besar, bila keliru bacaan PANJANG-PENDEKNYA'],
+      ['اُوْتِيَ كِتٰبَهٗ بِـيَمِيْنِهٖ فَيَقُوْلُ', 'فَاِذَارَڪِبُوْا'],
+      ['وَلَايَڪَادُيُسِـيْغُـهٗ', 'اِلٰـهَهٗ هَوَاهُ'],
+      ['وَفُوْمِهَاوَعَدَسِهَاوَبَصَلِـهَا', 'مَالُهٗ وَوَلَدُهٗ'],
+      ['فَذُوْقُوْاعَذَابِيْ وَنُـذُرِ', 'كَفَرُوْاسَـبَقُوْا'],
+      ['فِيْهَامَنَافِعُ وَمَـشَارِبُ', 'فَكَانَ عَاقِبَـتَهُمَا'],
+      ['خَافَ مَقَامِيْ وَخَافَ وَعِيْدِ', 'وَبٰـرَكَ فِيْهَا'],
+      ['وَهَامٰنَ وَجُنُوْدَهُمَاكَانُوْاخٰطِئِـيْنَ']
+    ],
+    [
+      ['لَاتَـقُوْلُوْارَاعِنَاوَقُوْلُوْا', 'بِمَاتُفِيْضُوْنَ فِيْهِ'],
+      ['فَقَالَ لِصَاحِبِهٖ وَهُوَيُحَاوِرُهٗ', 'وَلَايَكَادُيُبِـيْنُ'],
+      ['تَرَكَ اٰلُ مُوْسٰى وَاٰلُ هٰرُوْنَ', 'فَغُلِبُوْاهُنَالِكَ'],
+      ['وَرَسُوْلَهٗ كُبِتُوْاكَمَاكُبِتَ', 'كَلِمَتُنَالِعِبَادِنَا'],
+      ['يُقَاتِلُوْنَ فِيْ سَـبِيْـلِهٖ', 'وَكَانُوْالَنَاعٰبِدِيْنَ'],
+      ['فَذَبَـحُوْهَاوَمَاڪَادُوْا', 'لَهٗ بِرٰزِقِيْنَ'],
+      ['Bila belum betul semua, lebih-lebih .... PANJANG-PENDEKNYA STOP ! JANGAN DINAIKKAN ! Sabarlah ..... Mengulang']
+    ]
+  ];
+
+  let fontSize = 32; // ukuran awal
+  //let currentPage = 0;
+  let currentPage = parseInt(localStorage.getItem("iqro3_lastPage")) || 0;
+  const audio = new Audio();
+
+  function renderPage() {
+    const content = document.getElementById('content');
+    content.innerHTML = '';
+    const progress = ((currentPage + 1) / pages.length) * 100;
+    document.getElementById("progressFill").style.width = progress + "%";
+
+    pages[currentPage].forEach(line => {
+      const lineDiv = document.createElement('div');
+      lineDiv.className = 'line';
+
+      line.forEach(text => {
+        const span = document.createElement('div');
+        span.className = 'item';
+        span.style.fontSize = fontSize + "px";
+        //span.textContent = text;
+        span.innerHTML = text;
+        //span.onclick = () => play(span, text);
+        span.onclick = () => play(span, span.innerText);
+        lineDiv.appendChild(span);
+      });
+
+      content.appendChild(lineDiv);
+    });
+
+    document.getElementById('jumpPage').value = currentPage + 1;
+    document.getElementById('totalPage').textContent = pages.length;
+
+    // tandai halaman aktive
+  updateActivePage();
+
+  // simpan halaman terakhir
+localStorage.setItem("iqro3_lastPage", currentPage);
+  }
+
+
+//  function changePage(direction) {
+//    const newPage = currentPage + direction;
+//    if (newPage >= 0 && newPage < pages.length) {
+//      currentPage = newPage;
+//      renderPage();
+//    }
+//  }
+function changePage(direction) {
+  const newPage = currentPage + direction;
+  if (newPage >= 0 && newPage < pages.length) {
+
+    const content = document.getElementById('content');
+
+    // tentukan arah animasi
+    const animationClass = direction > 0 ? 
+        "slide-in-right" : 
+        "slide-in-left";
+
+    content.classList.remove("slide-in-right", "slide-in-left");
+
+    currentPage = newPage;
+    renderPage();
+
+    // trigger animasi
+    void content.offsetWidth; // reset animation
+    content.classList.add(animationClass);
+  }
+}
+
+document.getElementById('jumpPage').addEventListener('change', function () {
+  const page = parseInt(this.value) - 1;
+  if (page >= 0 && page < pages.length) {
+
+    const content = document.getElementById('content');
+
+    content.classList.remove("slide-in-right", "slide-in-left");
+
+    currentPage = page;
+    renderPage();
+
+    void content.offsetWidth;
+    content.classList.add("slide-in-right");
+
+  } else {
+    this.value = currentPage + 1;
+  }
+});
+
+  // Lompat langsung ke halaman
+//  document.getElementById('jumpPage').addEventListener('change', function () {
+//    const page = parseInt(this.value) - 1;
+//    if (page >= 0 && page < pages.length) {
+//      currentPage = page;
+//      renderPage();
+//    } else {
+//      this.value = currentPage + 1;
+//    }
+//  });
+
+  function play(el, text) {
+    document.querySelectorAll('.item').forEach(item => item.classList.remove('active'));
+    el.classList.add('active');
+
+    const soundEnabled = document.getElementById('soundToggle').checked;
+    if (!soundEnabled) return;
+
+    // STOP suara sebelumnya
+    audio.pause();
+    audio.currentTime = 0;
+
+    // Encode supaya karakter Arab aman
+    const fileName = encodeURIComponent(text) + ".mp3";
+    audio.src = "audio/" + fileName;
+    audio.play().catch(err => console.log("Audio tidak ditemukan:", err));
+  }
+
+  function changeFont(amount) {
+  fontSize += amount;
+
+  if (fontSize < 20) fontSize = 20;   // batas minimum
+  if (fontSize > 80) fontSize = 80;   // batas maksimum
+
+  renderPage();  // render ulang supaya ukuran berubah
+}
+
+function resetFont() {
+  fontSize = 32;
+  renderPage();
+}
+
+function toggleMenu() {
+  document.getElementById("sidebar").classList.toggle("active");
+  document.getElementById("overlay").classList.toggle("active");
+}
+
+  renderPage();
+</script>
+
+<script>
+  // Fade in saat halaman selesai load
+  window.addEventListener("load", function () {
+    document.body.classList.add("fade-in");
+  });
+
+  // Tangkap semua link
+  document.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", function (e) {
+      const href = this.getAttribute("href");
+
+      // kalau link internal
+      if (href && !href.startsWith("#") && !this.hasAttribute("target")) {
+        e.preventDefault();
+        document.body.classList.remove("fade-in");
+        document.body.classList.add("fade-out");
+
+        setTimeout(() => {
+          window.location.href = href;
+        }, 400);
+      }
+    });
+  });
+</script>
+<script>
+// === WARNA PENUNJUK ===
+const colorOptions = document.querySelectorAll(".color-option");
+
+colorOptions.forEach(option => {
+  option.addEventListener("click", function() {
+    const color = this.getAttribute("data-color");
+
+    // ubah warna
+    document.documentElement.style.setProperty("--active-color", color);
+
+    // simpan ke localStorage
+    localStorage.setItem("activeColor", color);
+  });
+});
+
+// load warna tersimpan saat buka halaman
+window.addEventListener("load", function() {
+  const savedColor = localStorage.getItem("activeColor");
+  if (savedColor) {
+    document.documentElement.style.setProperty("--active-color", savedColor);
+  }
+});
+
+// === WARNA TULISAN AKTIF ===
+const textColorOptions = document.querySelectorAll(".text-color-option");
+
+textColorOptions.forEach(option => {
+  option.addEventListener("click", function() {
+    const color = this.getAttribute("data-color");
+
+    document.documentElement.style.setProperty("--active-text", color);
+
+    localStorage.setItem("activeTextColor", color);
+  });
+});
+
+// load saat halaman dibuka
+window.addEventListener("load", function() {
+  const savedTextColor = localStorage.getItem("activeTextColor");
+  if (savedTextColor) {
+    document.documentElement.style.setProperty("--active-text", savedTextColor);
+  }
+});
+
+</script>
+<script>
+const drawer = document.getElementById("pageDrawer");
+
+document.getElementById("openPageList").addEventListener("click", () => {
+  drawer.classList.toggle("open");
+});
+//const drawer = document.getElementById("pageDrawer");
+//const openBtn = document.getElementById("openPageList");
+
+//openBtn.addEventListener("click", function() {
+//  drawer.classList.toggle("open");
+//});
+
+//function goToPage(pageNumber) {
+//  currentPage = pageNumber;
+//  renderPage();
+//  drawer.classList.remove("open");
+//}
+
+//function goToPage(index) {
+//  currentPage = index;
+//  renderPage();
+
+  // 🔥 tutup drawer setelah klik
+   //document.getElementById("pageDrawer").classList.remove("open");
+   //document.querySelector(".overlay").classList.remove("show");
+//}
+function goToPage(index) {
+  currentPage = index;
+  renderPage();
+
+  // hanya tutup kalau layar kecil
+  if (window.innerWidth < 768) {
+    document.getElementById("pageDrawer").classList.remove("open");
+  }
+}
+//const pageList = document.querySelector(".page-list");
+
+//pages.forEach((_, index) => {
+//  const li = document.createElement("li");
+//  li.textContent = "Halaman " + (index + 1);
+//  li.onclick = () => goToPage(index + 1);
+//  pageList.appendChild(li);
+//});
+//const pageList = document.getElementById("pageList");
+
+function generatePageList() {
+  pageList.innerHTML = "";
+
+  pages.forEach((_, index) => {
+    const li = document.createElement("li");
+
+    li.textContent = "Halaman " + (index + 1);
+
+    li.addEventListener("click", function() {
+      currentPage = index;
+      renderPage();
+      drawer.classList.remove("open");
+    });
+
+    pageList.appendChild(li);
+  });
+}
+
+function updateActivePage() {
+  const items = document.querySelectorAll("#pageList li");
+
+  items.forEach((li, index) => {
+    li.classList.toggle("active-page", index === currentPage);
+  });
+}
+
+generatePageList();
+
+function updateActivePage() {
+  const items = document.querySelectorAll("#pageList li");
+
+  items.forEach((li, index) => {
+    if (index === currentPage) {
+      li.classList.add("active-page");
+
+      // 🔥 auto scroll ke halaman aktif
+      li.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+
+    } else {
+      li.classList.remove("active-page");
+    }
+  });
+}
+
+//document.querySelectorAll(".page-list li").forEach((li, i) => {
+//  li.classList.toggle("active-page", i === currentPage);
+//});
+
+let touchStartX = 0;
+let touchEndX = 0;
+
+const contentArea = document.querySelector(".content-area");
+
+contentArea.addEventListener("touchstart", e => {
+  touchStartX = e.changedTouches[0].screenX;
+});
+
+contentArea.addEventListener("touchend", e => {
+  touchEndX = e.changedTouches[0].screenX;
+  handleSwipe();
+});
+
+function handleSwipe() {
+  const swipeDistance = touchEndX - touchStartX;
+
+  if (swipeDistance > 80) {
+    changePage(-1); // swipe kanan
+  }
+
+  if (swipeDistance < -80) {
+    changePage(1); // swipe kiri
+  }
+}
+</script>
+<!--
+<script>
+  let lastScroll = 0;
+
+const header = document.querySelector("header");
+const footer = document.querySelector("footer");
+
+document.querySelector(".content-area").addEventListener("scroll", function () {
+
+  const currentScroll = this.scrollTop;
+
+  if (currentScroll > lastScroll) {
+    header.style.transform = "translateY(-100%)";
+    footer.style.transform = "translateY(100%)";
+  } else {
+    header.style.transform = "translateY(0)";
+    footer.style.transform = "translateY(0)";
+  }
+
+  lastScroll = currentScroll;
+});
+</script>
+-->
+</body>
+</html>

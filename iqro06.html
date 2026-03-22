@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<!-- ||**********************|| -->
+<!-- || Madura Creator       || -->
+<!-- || beach.jm02@gmail.com || -->
+<!-- ||**********************|| -->
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri&display=swap" rel="stylesheet">
+  <title>IQRA 6</title>
+  <link rel="icon" type="image/png" href="https://github.com/adirasa-jumiang/rapor-ra/blob/main/ADIRASA.png?raw=true">
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      direction: ltr;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    body.fade-in {
+      opacity: 1;
+    }
+
+    body.fade-out {
+      opacity: 0;
+    }
+
+    @font-face {
+      font-family: 'AmiriCustom';
+      src: url('fonts/Amiri-Regular.ttf') format('truetype');
+    }
+
+    .item {
+      font-family: 'AmiriCustom';
+    }
+
+    header, footer {
+      position: fixed;
+      left: 0;
+      right: 0;
+      /* background: linear-gradient(135deg, #8b0000, #c62828); */
+      background: linear-gradient(to right, black, rgb(174, 158, 6), black);
+      color: white;
+      padding: 10px 15px;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    header {
+      top: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer {
+      bottom: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    main {
+      padding: 60px 10px 60px;
+      transition: margin-left 0.3s;
+    }
+    .line {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      border-bottom: 1px solid #ccc;
+      margin: 10px 0;
+      padding: 10px;
+    }
+    .item {
+      font-size: 32px;
+      margin: 5px 10px;
+      cursor: pointer;
+      padding: 5px 10px;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+    .item.active {
+      /* background-color: #f44336;
+      color: white; */
+      background: var(--active-color, #ffd54f);
+      color: var(--active-text, #000);
+      transition: background 0.3s ease;
+    }
+    .button {
+      font-size: 20px;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+    @media (max-width: 500px) {
+    .button-kiri {
+      display: none;
+    }
+    .button-kanan {
+      display: none;
+    }
+    }
+
+.page-frame {
+  border: 5px solid rgb(14, 14, 14);
+  padding: 20px;
+  margin: 10px;
+  background: white;
+  min-height: 70vh;
+  position: relative;
+  overflow: hidden; /* penting */
+} 
+
+.page-frame::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border: 2px solid rgb(14, 14, 14);
+  pointer-events: none;   /* 🔥 PENTING */
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 60px;
+  /* background: linear-gradient(180deg, #7b1e1e, #a83232); */
+  background: linear-gradient(180deg, #130101, orange);
+  color: white;
+  /* padding-top: 60px; */
+  transition: 0.3s;
+  z-index: 2000;
+  box-shadow: 4px 0 15px rgba(0,0,0,0.3);
+}
+
+.sidebar-header {
+  text-align: right;
+  padding: 15px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  z-index: 1500;
+}
+
+#overlay.active {
+  display: block;
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar a {
+  display: block;
+  padding: 12px 20px;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  transition: 0.2s;
+}
+
+.sidebar a:hover {
+  color: yellow;
+  padding-left: 45px;
+  background: rgba(255,255,255,0.15);
+}
+
+.menu-btn {
+  font-size: 22px;
+  cursor: pointer;
+}
+/* =========== */
+.page-content {
+  position: relative;
+}
+
+/* animasi masuk dari kanan */
+.slide-in-right {
+  animation: slideRight 0.35s ease forwards;
+}
+
+/* animasi masuk dari kiri */
+.slide-in-left {
+  animation: slideLeft 0.35s ease forwards;
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+/* warna pilihan */
+.color-option {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid white;
+  transition: transform 0.2s ease;
+}
+
+.color-option:hover {
+  transform: scale(1.2);
+}
+
+.text-color-option {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid white;
+  transition: transform 0.2s ease;
+}
+
+.text-color-option:hover {
+  transform: scale(1.2);
+}
+/* ===== LAYOUT UTAMA ===== */
+.app-layout {
+  display: flex;
+  /* margin-top: 60px;   /* tinggi header */
+  /* margin-bottom: 60px; /* tinggi footer */
+  background: white;
+  height: calc(100vh - 120px);
+  overflow: hidden;
+}
+
+/* Drawer kiri */
+.page-drawer {
+  width: 0;
+  background: silver;
+  color: rgb(3, 1, 19);
+  overflow-y: auto;
+  transition: width 0.3s ease;
+}
+
+.page-drawer.open {
+  width: 220px;
+}
+
+/* Konten */
+.content-area {
+  flex: 1;
+  overflow-y: auto;
+  transition: 0.3s;
+  padding: 10px;
+}
+
+/* ===== */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  z-index: 1500;
+}
+
+.overlay.show {
+  display: block;
+}
+/*
+.active-page {
+ /* background: #444; 
+  background: yellow;
+  font-weight: bold; 
+} */
+.active-page:hover {
+  background: yellow;
+}
+
+/*.page-list li.active-page {
+  background: gold;
+  font-weight: bold;
+} */
+.page-list li.active-page {
+  background: gold;
+  font-weight: bold;
+  animation: highlightPage 0.4s ease;
+}
+
+@keyframes highlightPage {
+  from {
+    background: orange;
+  }
+  to {
+    background: gold;
+  }
+}
+
+.page-list li {
+  list-style: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.page-list li:hover {
+  background: rgba(0,0,0,0.1);
+}
+
+/* progress bar halaman */
+.progress-bar {
+  height: 4px;
+  background: #ddd;
+  position: fixed;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: gold;
+  transition: width 0.3s;
+}
+
+/*  css img dll   */
+.item img {
+  max-width: 100px;
+  display: block;
+  margin: auto;
+}
+  </style>
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <span onclick="toggleMenu()">✖</span>
+      </div><center>MENU IQRO</center><hr>
+          <a href="index.html">📖 IQRO 1</a>
+          <a href="iqro02.html">📖 IQRO 2</a>
+          <a href="iqro03.html">📖 IQRO 3</a>
+          <a href="iqro04.html">📖 IQRO 4</a>
+          <a href="iqro05.html">📖 IQRO 5</a>
+          <a href="#">📖 IQRO 6</a>
+        <hr>
+          <a href="https://ra-adirasa.blogspot.com/">⚙️ RA ADIRASA</a>
+          <a href="about.html">⚙️ Tentang Aplikasi</a>
+          <div style="margin-top:20px;">
+  <strong>🎨 Warna Penunjuk :</strong>
+  <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap; padding-left: 20px;">
+    
+    <div class="color-option" data-color="#ffd54f" style="background:#ffd54f;"></div>
+    <div class="color-option" data-color="#4caf50" style="background:#4caf50;"></div>
+    <div class="color-option" data-color="#2196f3" style="background:#2196f3;"></div>
+    <div class="color-option" data-color="#e91e63" style="background:#e91e63;"></div>
+    <div class="color-option" data-color="#ff5722" style="background:#ff5722;"></div>
+    
+  </div>
+</div>
+  
+  <div style="margin-top:20px;">
+  <strong>✍ Warna Tulisan Aktif :</strong>
+  <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap; padding-left: 20px;">
+    
+    <div class="text-color-option" data-color="#000000" style="background:#000000;"></div>
+    <div class="text-color-option" data-color="#ffffff" style="background:#ffffff; border:1px solid #ccc;"></div>
+    <div class="text-color-option" data-color="#d32f2f" style="background:#d32f2f;"></div>
+    <div class="text-color-option" data-color="#1b5e20" style="background:#1b5e20;"></div>
+    <div class="text-color-option" data-color="#0d47a1" style="background:#0d47a1;"></div>
+    
+  </div>
+</div>
+<hr>
+  <div>
+    <strong>✍ Ukuran Tulisan :</strong><br><center>
+    <button class="button" onclick="changeFont(-2)">A-</button>
+    <button class="button" onclick="resetFont()">A</button>
+    <button class="button" onclick="changeFont(2)">A+</button></center>
+  </div>
+<br><br>
+
+  </div>
+
+  <header>
+    <!-- tambahan pro -->
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <!-- akhir pro -->
+    <div>
+      <span class="menu-btn" onclick="toggleMenu()">☰</span>
+      <strong style="margin-left:10px; font-size: large; color: yellow;">IQRA 6</strong>
+    </div>
+    <div><b>بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</b></div>
+    <div>
+      <label>
+        <input type="checkbox" id="soundToggle" checked>
+        Suara
+      </label>
+    </div>
+  </header>
+
+  <main class="app-layout">
+  <!-- halaman -->
+<div class="page-drawer" id="pageDrawer">
+  <div class="drawer-header">
+    📖 Daftar Halaman
+  </div>
+
+  <ul class="page-list" id="pageList">
+    <!-- <li onclick="goToPage(0)" class="active-page">Halaman </li> -->
+  </ul>
+</div>
+
+<!-- konten utama -->
+ <div class="content-area">  
+  <div class="page-frame">
+    <div id="content" class="page-content"></div>
+  </div>
+  </div>
+  </main>
+
+<footer>
+  <button class="button-kiri" id="openPageList"><font style="font-size: small;">Madura@Creator</font></button>
+  <button class="button" onclick="changePage(-1)"><<</button>
+
+  <span>
+    Halaman 
+    <input type="number" id="jumpPage" min="1" style="width:50px">
+    / <span id="totalPage"></span>
+  </span>
+
+  <button class="button" onclick="changePage(1)">>></button>
+
+  <!-- 🔥 Tambahan kontrol font -->
+  <div>
+    <button class="button-kanan" onclick="changeFont(-2)">A-</button>
+    <button class="button-kanan" onclick="resetFont()">A</button>
+    <button class="button-kanan" onclick="changeFont(2)">A+</button>
+  </div>
+</footer>
+
+<script>
+  const pages = [
+    [
+      ['PETUNJUK MENGAJAR JILID 6'],
+      ['<font style="font-size: 80px">اِقْـرَأْ</font>'],
+      ['1. Sistem'],
+      ['a. CBSA (Cara Belajar Santri Aktif) guru sebagai penyimak saja, jangan sampai menuntun, kecuali hanya memberikan contoh pokok pelajaran.'],
+      ['b. Privat. Penyimakan secara seorang demi seorang.'],
+      ['Catatan : Bila klasikal, santri dikelompokkan berdasarkan persamaan kemampuan/jilid. Guru menerangkan pokok-pokok pelajaran secara klasikal dengan menggunakan peraga, dan secara acak santri dimohon membaca bahan latihan.'],
+      ['c. asistensi Santri yang lebih tinggi jilidnya dapat membantu menyimak santri lainnya.'],
+      ['2. Mengenai judul-judul, guru langsung memberi contoh bacaannya, jadi tidak perlu banyak komentar.'],
+      ['3. Sekali huruf dibaca betul, tidak boleh/jangan diulang lagi.'],
+      ['4. Bila santri keliru panjang-panjang dalam membaca huruf, maka guru harus dengan tegas memperingatkan (sebab yang betul dengan pendek-pendek) dan membacanya agar diputus-putus, bila perlu ditekan.'],
+      ['5. Bila santri keliru membaca huruf, cukup betulkan huruf-huruf yang keliru saja, dengan cara :'],
+      ['- Isyarat, umpamanya dengan kata-kata "eee...awas...stop...dsb"'],
+      ['- Bila dengan isyarah masih tetap keliru, berilah titian ingatan. Umpamanya santri lupa baca huruf ( ز ) ustadz cukup mengingatkan titiknya yaitu "bila tidak ada titiknya dibaca RO ( ر )" dst. Bila masih tetap lupa, barulah ditunjukkan bacaan yang sebenarnya.'],
+      ['6. Pelajaran satu ini berisi pengenalan huruf berfathah, maka sebelum dikuasai benar, jangan naik ke jilid berikutnya. Sedangkan bila kemampuan maksimal tetap belum fasikh, maka sementara boleh :'],
+      [' شَ lebih diarahkan ke bunyi SIA daripada keliru سَ '],
+      [' ضَ lebih diarahkan ke bunyi DHO (kendor) daripada keliru ظَ '],
+      [' ظَ lebih diarahkan ke bunyi ذَ (dibaca dengan bibir agak maju)'],
+      [' قَ lebih diarahkan ke bunyi  KO daripada keliru خَ '],
+      ['  Jadi bisa naik ke pelajaran dua dengan "her" pada huruf-huruf tertentu.'],
+      ['7. Bagi santri yang betul-betul menguasai pelajaran dan sekiranya mampu berpacu dalam menyelesaikan belajarnya maka membacanya boleh diloncat-loncatkan, tidak harus utuh sehalaman.'],
+      ['8. Untuk EBTA, sebaiknya ditentukan guru pengujinya. Demikian, semoga sukses. Amin']
+    ],
+    [
+      ['نْ(ـً ـٍ ـٌ) --> و', 'Masuk dengan dengung', 'Ditekan & ditahan 2 harokat'],
+      ['عَنْ --> وَّالِـدِهٖ', '', 'مِنْ --> وَّاحِدٍ'],
+      ['زَجْرَةًوَّاحِـدَةً', 'سِرَاجًاوَّهَّاجًا', 'حَبًّاوَّنَبَاتًا'],
+      ['عَـدُوًّاوَّحَـزَنًا۝', '', 'رَحْـمَةًوَّعِلْـمًا۝'],
+      ['مِنْ وَّرَاۤئِـهِمْـ مُّحِيْـطٌ۝', '', 'وَاِلٰـهُكُمْـ اِلٰـهٌ وَّاحِدٌ۝'],
+      ['كَانَ فَاحِشَةًوَّمَقْتًا۝', '', 'اَحْسَنُ اَثَاثًاوَّرِءْيًا۝'],
+      ['وَالْاٰخِرَةُ خَيْرٌوَّاَبْـقٰى۝', '', 'اِلَّاحَـمِيْمًاوَّغَسَّاقًا۝'],
+      ['مِنْ وَّلِيٍّ وَّلَانَصِيْرٍ۝', '', 'بُـهْتَانًاوَّاِثْمًامُّبِـيْنًا۝']
+    ],
+    [
+      ['نُوْحٍ وَّعَـادٍوَّثَـمُوْدَ۝', '', 'وَوَالِـدٍوَّمَاوَلَـدَ۝'],
+      ['هُدًى وَّبُشْرٰى لِلْمُؤْمِنِيْنَ۝', '', 'سَـبْعَةٌوَّثَامِنُهُمْ۝'],
+      ['ثَوَابًاوَّخَـيْرٌمَّـرَدًّا۝', '', 'وَفَرِحُوْابِالْحَـيٰوةِ الدُّنْـيَا۝'],
+      ['يَحْسَبُ اَنَّ مَالَـهۤٗ اَخْلَدَهٗ۝', '', 'اَلَّذِي جَـمَعَ مَالًاوَّعَدَّدَهٗ۝'],
+      ['وَجَنّٰتٍ وَّعُـيُوْنٍ۝', '', 'طَاعَةٌوَّقَوْلٌ مَّعْرُوْفٌ۝'],
+      ['وَفَاكِهَةًوَّاَبًّـا۝', '', 'نَضْـرَةًوَّسُـرُوْرًا۝'],
+      ['فِيْ سَـمُوْمٍـ وَّحَـمِيْـمٍـ۝', '', 'لَابَارِدٍوَّلَاكَرِيْـمٍـ۝'],
+      ['مَغْـفِرَةٌوَّاَجْرٌعَظِيْـمٌـ۝', '', 'مِنْ وَّرَاۤءِهٖ عَذَابٌ۝']
+    ],
+    [
+      ['وَاَنَّ اللّٰهَ قَدْاَحَاطَ بِڪُلِّ شَيْءٍ عِلْـمًا۝'],
+      ['لَوَلَّـيْتَ مِنْـهُمْـ فِـرَارًاوَّلَـمُلِئْتَ مِنْـهُمْـ رُعْبًـا۝'],
+      ['فَـلَـنَقُصَّنَّ عَلَيْـهِمْـ بِعِلْمٍـ وَّمَاڪُنَّاغَاۤئِـبِـيْنَ۝'],
+      ['هٰذَابَـيَانٌ لِّلنَّاسِ وَهُدًى وَّمَوْعِظَةٌلِّلْـمُتَّقِيْنَ۝'],
+      ['وَلَقَدْجَعَلْنَافِى السَّمَاۤءِبُرُوْجًاوَّزَيَّـنّٰـهَالِلنّٰـظِرِيْنَ۝'],
+      ['اِنَّ وَعْدَاللّٰهِ حَقٌّ وَّلَايَسْتَخِفَّنَّكَ الَّذِيْنَ لَايُوْقِنُوْنَ۝'],
+      ['وَلَهُمْـ فِيْـهَاۤاَزْوَاجٌ مُّطَـهَّرَةٌ وَّهُمْـ فِيْـهَاخٰلِدُوْنَ۝'],
+      ['اِتَّبِـعُوْامَنْ لَّايَسْئَلُڪُمْـ اَجْرًاوَّهُمْـ مُّـهْتَـدُوْنَ۝']
+    ],
+    [
+      ['نْ(ـً ـٍ ـٌ) --> ي', 'Masuk dengan dengung', 'Ditekan & ditahan 2 harokat'],
+      ['مِنْ --> يَّوْمَئِـذٍ', '', 'اَنْ --> يُّوْصَلَ'],
+      ['اِلَّاۤاَنْ يَّشَـاۤءَ اللّٰهُ۝', '', 'مَنْ يُّؤْمِنُ بِاللّٰهِ۝'],
+      ['اَنْ يَّأْتِـيَنِيْ بِـهِمْـ جَمِيْعًا۝', '', 'اِنْ يَّقُوْلُوْنَ اِلَّاكَـذِبًا۝'],
+      ['ضَاحِكَـةٌ مٌّسْتَبْشِرَةٌ۝', '', 'وُجُوْهٌ يَّوْمَئِذٍمُّسْفِرَةٌ۝'],
+      ['عَلَّـمَـهٗ شَدِيْدُالْقُوٰى۝', '', 'اِنْ هُوَاِلَّاوَحْيٌ يُّوْحٰى۝'],
+      ['لِـمَنْ يَّشَاۤءُوَيَرْضٰى۝', '', 'لَعِبْرَةًلِّـمَنْ يَّخْشٰى۝'],
+      ['فِيْ جَنّٰتٍ يَّـتَسَاۤءَلُوْنَ۝', '', 'وَيْلٌ يَّوْمَئِذٍلِّلْمُكَـذِّبِيْنَ۝']
+    ],
+    [
+      ['اَوَاٰبَاۤؤُنَاالْاَوَّلُوْنَ۝', '', 'وَظِلٍّ مِّنْ يَّحْـمُوْمٍـ۝'],
+      ['اِلَّاۤاَنْ يَّشَاۤءَاللّٰهُ۝', '', 'لَنْ يَّغْـفِرَاللّٰهُ لَـهُـمْـ۝'],
+      ['مَاۤاُرِيْـدُمِنْهُمْ مِّنْ رِّزْقٍ وَّمَاۤاُرِيْـدُاَنْ يُّطْعِمُوْنَ۝'],
+      ['فَوَيْلٌ لِّـلَّذِيْنَ كَفَرُوْامِنْ يَّـوْمِـهِمُـ الَّذِيْ يُوْعَدُوْنَ۝'],
+      ['فَمَااسْطَاۤعُوْاۤاَنْ يَّظْـهَرُوْهُ وَمَااسْتَطَاعُوْالَه نَقْبًا۝'],
+      ['وَمَاتَشَاۤءُوْنَ اِلَّاۤاَنْ يَّشَاۤءَاللّٰهُ رّبُّ الْعٰـلَمِيْنَ۝'],
+      ['لَاٰيٰتٍ لِّـقَوْمٍـ يَّـتَـفَكَّـرُوْنَ۝', '', 'كُلٌّ يَّـجْرِيْ لِاَجَلٍ مُّسَمًّى۝'],
+      ['مَنْ يَّـتَـبَدَّلِ الْكُفْرَبِالْاِيْمَانِ فَقَدْضَلَّ سَوَاۤءَالسَّـبِيْلِ۝']
+    ],
+    [
+      ['فَـمَنْ يَّعْـمَلْ مِثْـقَالَ ذَرَّةٍ خَـيْرًايَّـرَهٗ۝'],
+      ['اِنَّ فِى السَّـمٰوٰتِ وَالْاَرْضِ لَاٰيٰتٍ لِّلْمُؤْمِنِيْنَ۝'],
+      ['قَالَ وَمَنْ يَّـقْنَطُ مِنْ رَّحْمَةِ رَبِّهٖۤ اِلَّاالضَّاۤلُّوْنَ۝'],
+      ['يَوْمَئِذٍيَّصْدُرُالنَّاسُ اَشْتَاتًالِـيُرَوْااَعْمَالَـهُمْـ۝'],
+      ['يٰۤاَيُّـهَاالنَّـبِـيُّ اتَّـقِ اللّٰهَ وَلَاتُطِـعِ الْكٰفِرِيْنَ۝'],
+      ['وَاَقْرَضُوااللّٰهَ قَرْضًاحَسَنًايُّضٰـعَفُ لَـهُمْـ۝'],
+      ['مَاۤاُرِيْدُمِنْهُمْ مِّنْ رِّزْقٍ وَّمَاۤاُرِيْـدُاَنْ يُّطْعِـمُوْنِ۝'],
+      ['فَيُضِلُّ اللّٰهُ مَنْ يَّشَاۤءُ وَيَـهْدِيْ مَنْ يَّشَاۤءُ۝']
+    ],
+    [
+      ['نْ(ـً ـٍ ـٌ) ---> ب', 'Nun sukun/tanwin', 'berubah menjadi مْـ'],
+      ['نُوْرٌ ---> بَـيْـتِيْ', '', 'مِنْ ---> بَعْـدِ'],
+      ['عَوَانٌ بَـيْنَ', 'كَافِـرٍبِـهٖ', 'اَبَـدًابِـمَا'],
+      ['مِنْ بَـأْسٍ', 'وَضَاۤئِقٌ بِـهٖ', 'اَلْاَنْبِيَـاۤءُ'],
+      ['لِـجَنْبِـهٖ', 'حِلٌّ بِـهٰذَا', 'بَغْيًابَيْنَـهُمْـ'],
+      ['ذٰلِكَ رَجْعٌ بَعِيْـدٌ۝', '', 'هٰذَامُغْتَسَـلٌ بَارِدٌ۝'],
+      ['خَبِيْرٌبِـمَاتَعْـمَلُوْنَ۝', '', 'كُلُّ نَفْسٍ بِمَاكَسَبَتْ۝'],
+      ['بِڪُلِّ شَيْءٍ بَصِـيْرٌ۝', '', 'اَللّٰهُ لَطِيْفٌ بِعِبَادِهٖ۝']
+    ],
+    [
+      ['فَكَانَتْ هَبَاۤءًمُّنْـبَـثًّا۝', '', 'فَاَنْـبَـتْنَافِيْـهَاحَبًّا۝'],
+      ['وَمَايَـنْـبَغِيْ لَهُـمْ۝', '', 'رَسُوْلًايَّـتْلُوْاعَلَـيْكُمْـ۝'],
+      ['قُلُوْبٌ يَّوْمَئِذٍوَّاجِفَةٌ۝', '', 'اَضْعَافًامُّضٰـعَفَةً۝'],
+      ['وَمَاۤاَدْرٰىكَ مَاالْحُطَـمَةُ۝', '', 'كَلَّالَيُـنْبَذَنَّ فِى الْحُطَمَةِ۝'],
+      ['اُولٰۤـئِكَ فِيْ ضَلٰلٍ بَعِيْـدٍ۝', '', 'جَزَاۤءًبِمَاكَانُوْايَعْمَلُوْنَ۝'],
+      ['وَهُوَوَاقِــعٌ بِـهِـمْـ۝', '', 'كُلُّ اُمَّةٍ بِرَسُوْلِـهِمْـ۝'],
+      ['لَفِيْ ضَلٰلٍ بَعِيْـدٍ۝', '', 'وَاللّٰهُ رَءُوْفٌ بِالْعِبَادِ۝'],
+      ['مَالَـمْـ يَأْذَنْ بِـهِ اللّٰهُ۝', '', 'لَنَسْفَعًابِالنَّاصِيَـةِ۝']
+    ],
+    [
+      ['فَاصْبِرْاِنَّ وَعْدَاللّٰهِ حَقٌّ وَّاسْـتَغْفِرْلِذَنْبِكَ۝'],
+      ['وَسَـبِّحْ بِحَـمْدِرَبِّكَ بِالْعَشِيِّ وَالْاِبْڪَارِ۝'],
+      ['فَمَنْ يَّـهْـدِيْهِ مِنْ بَعْدِاللّٰهِ اَفَلَاتَذَڪَّرُوْنَ۝'],
+      ['وَمَالَـهُمْـ بِذٰلِكَ مِنْ عِلْـمٍـ اِنْ هُمْـ اِلَّايَظُـنُّوْنَ۝'],
+      ['وَمَاجَعَلَ اَزْوَاجَكُمُـ الّٰۤئِيْ تُظٰـهِرُوْنَ مِنْهُنَّ اُمَّـهٰتِكُمْـ۝'],
+      ['فِيْ اَدْنَى الْاَرْضِ وَهُمْـ مِّنْ بَعْدِغَلَبِـهِمْـ سَـيَغْلِبُوْنَ۝'],
+      ['وَمَنْ يُّضْلِلِ اللّٰهُ فَـمَالَهٗ مِنْ وَّلِـيٍّ مِّنْ بَعْـدِهٖ۝'],
+      ['فَاِمْسَاكٌ بِـمَعْرُوْفٍ اَوْتَسْـرِيْحٌ بِاِحْسَانٍ۝']
+    ],
+    [
+      ['قُرَّةَاَعْـيُنٍ', 'وَهَيِّءْلَنَا', 'اَوْزِعْنِيْ'],
+      ['مَنَاسِكَڪُمْ', 'اَوْوَّزَنُوْهُـمْـ', 'اَيُّ الْحِزْبَيْنِ'],
+      ['مَأْجُـوْجَ', 'يَأْجُـوْجَ', 'يُعْـجِزُوْنَ'],
+      ['اَلصَّلٰوةُوَالزَّكٰوةُ', 'اِلٰـهَهٗ هَوٰىهُ', 'اَلْاَفْئِدَةِ'],
+      ['اَلْـمُـزَّمِّلُ', 'فَلِلّٰهِ الْمَڪْرُ', 'مِنْ مُّضْغَةٍ'],
+      ['وَالْمُنْخَنِقَةُ', 'فَأْوُوْاۤاِلَى الْكَهْفِ', 'يُعْجِبُكَ'],
+      ['لَاتُـلْـهِيْـهِمْـ', 'فِيْ بَـحْرٍلُّـجِّيٍّ', 'يَسْـتَنْبِئُوْنَكَ'],
+      ['جَنَّةُالْمَأْوٰى', 'شَنَاٰنُ قَوْمٍـ', 'وَلَاۤ اٰۤمِّيْنَ'],
+      ['اِنَّمَاۤاَنَامِنَ الْمُنْذِزِيْنَ', 'لَايَايْئَسُ', 'لِشَايْءٍ']
+    ],
+    [
+      ['نْ(ـً ـٍ ـٌ) ---> ', 'Dibaca samar-samar & dengung', 'Bila bertemu dengan salah satu dari 15 huruf dibawah ini'],
+      ['وَاَنْتُـمْـ تُتْـلٰى', 'اَنْتَ', 'ـ ـ ـ تَ'],
+      ['اَوْاَكْنَـنْتُـمْـ', 'اَنْ تَـقُوْلُوْا', 'مَنْ تَطَوَّعَ'],
+      ['جَنّٰتٍ تَجْرِيْ مِنْ تَحْتِهَاالْاَنْـهٰرُخٰلِدِيْنَ فِيْـهَا۝'],
+      ['اِنَّانَحْنُ نَزَّلْنَاالذِّڪْرَوَاِنَّالَهٗ لَـحٰفِظُوْنَ۝'],
+      ['وَكُنْتُمْ اَزْوَاجًاثَـلٰثَـةً۝', 'بِالْاُنْثٰى', 'ـ ـ ـ ثٰ'],
+      ['مِثْـلُ حَظِّ الْاُنْـثَـيَيْنِ۝', '', 'خَلَقَ الذَّكَـرَوَالْاُنْثٰى۝'],
+      ['وَرَيْحَانٌ وَّجَنَّتُ نَعِيْمٍـ۝', '', 'عَلَى الْحِنْثِ الْعَظِيْمِ۝']
+    ],
+    [
+      ['نُمَـتِّعُـهُمْـ قَلِيْلًاثُـمَّـ نَضْطَرُّهُمْـ اِلٰى عَذَابٍ غَلِيْظٍ۝'],
+      ['مُوْصٍ جَنَـفًا', 'وَمَنْ جَاۤءَ', 'مِنْ جُوْعٍ', 'ـ ـ ـ جُ'],
+      ['اِنَّ الْاَبْـرَارَلَفِيْ نَعِيْـمٍـ۝', '', 'اَلتَّوْرٰىةُوَالْاِنْجِيْـلُ۝'],
+      ['كُلُّ اُمَّةٍتُدْعٰىۤ اِلٰى كِتٰـبِـهَا۝', '', 'وَتَرٰى كُلَّ اُمَّةٍجَاثِيَةً۝'],
+      ['وَنَادَيْنٰـهُ مِنْ جَانِبِ الطُّوْرِالْاَيْمَنِ وَقَرَّبْـنٰـهُ نَجِيًّا۝'],
+      ['عِنْدَسِدْرَةِالْمُنْتَـهٰى۝', 'مِنْ دُوْنِـهَا', 'ـ ـ ـ دُ'],
+      ['وَفِيْ خَلْقِكُمْـ وَمَايَبُثُّ مِنْ دَاۤبَّةٍاٰيٰتٌ لِّقَوْمٍـ يُّوْقِنُوْنَ۝'],
+      ['بَلْ لَّـهُمْـ مَّوْعِدٌلَّنْ يَّجِدُوْامِنْ دُوْنِـهٖ مَوْئِـلًا۝']
+    ],
+    [
+      ['وَمَالِاَحَدٍعِنْـدَهٗ مِنْ نِّعْـمَةٍتُـجْزٰى۝'],
+      ['عَنْ ذِى الْقَرْنَـيْنِ۝', 'مِنْ ذُرِّيَّةٍ', 'ـ ـ ـ ذُ'],
+      ['اَوْمِسْكِيْنًاذَامَتْرَبَةٍ۝', '', 'يَتِـيْمًاذَامَقْرَبَةٍ۝'],
+      ['ءَاَنْـذَرْتَـهُـمْـ اَمْـ لَـمْـ تُنْـذِرْهُـمْـ لَايُؤْمِنُوْنَ۝'],
+      ['وَلَاتَـقُوْلَنَّ لِشَايْءٍ اِنِّيْ فَاعِلٌ ذٰلِكَ غَدًا۝'],
+      ['لَنَـنْزِعَنَّ', 'اِنْ زَلَلْتُـمْـ', 'اُنْـزِلَ', 'ـ ـ ـ زِ'],
+      ['اَوْيُلْقٰىۤ اِلَيْـهِ كَنْزٌاَوْتَـكُوْنُ لَهٗ جَنَّـةٌيَّأْكُلُ مِنْـهَا۝'],
+      ['تَـنْزِيْلُ الْڪِتٰبِ مِنَاللّٰهِ الْعَزِيْزِ الْحَـكِيْمِـ۝']
+    ],
+    [
+      ['وَاَنْزَلْنَافِيْـهَاۤاٰيٰتٍ بَـيِّـنٰتٍ لَّـعَلَّـڪُمْـ تَذَكَّـرُوْنَ۝'],
+      ['قَوْلًاسَـدِيْدًا۝', 'مِنْ اٰيَـةٍاَوْنُنْسِـهَا', 'ـ ـ ـ سِ'],
+      ['قُتِلَ الْاِنْـسَانُ مَاۤاَكْفَرَهٗ۝', '', 'خَمْـسَةٌسَادِسُـهُمْـ۝'],
+      ['اِلَّامَنْ اَتَى اللّٰهَ بِقَلْبٍ سَـلِيْـمٍـ۝'],
+      ['لَايَايْـئَسُ مِنْ رَّوْحِ اللّٰهِ اِلَّاالْقَوْمُـ الْكٰفِرُوْنَ۝'],
+      ['قُـلْـنَاۤاِذًاشَطَطًا۝', 'مِنْ شَعَاۤئِـرِ', 'ـ ـ ـ شَ'],
+      ['ثُمَّ اِذَاشَاۤءَاَنْـشَرَهٗ۝', '', 'وَيُنْشِئُ السَّحَابَ الثِّـقَالَ۝'],
+      ['وَمِنْ شَرِّغَاسِقٍ اِذَاوَقَبَ۝', '', 'مِنْ شَرِّمَاخَلَقَ۝']
+    ],
+    [
+      ['وَنُخْرِجُ لَهٗ يَوْمَـ الْقِيٰمَةِڪِتٰـبًايَّـلْـقٰهُ مَنْشُوْرًا۝'],
+      ['مَنْ صَلَحَ مِنْ اٰبَـاۤئِـهِمْـ۝', 'مِنْ مَّاۤءٍصَدِيْدٍ', 'ـ ـ ـ صَ'],
+      ['يَوْمَـ لَايُغْنِيْ عَنْـهُمْـ كَيْدُهُمْـ شَيْئًاوَّلَاهُمْـ يُنْصَرُوْنَ۝'],
+      ['فَلْيَعْمَلْ عَمَلًاصَالِحًاوَّلَايُشْرِكْ بِعِبَادَةِرَبِّـهٖۤ اَحَدًا۝'],
+      ['قَوْلٌ مَّعْرُوْفٌ وَّمَغْفِرَةٌخَيْـرٌمِّنْ صَدَقَةٍيَّـتْبَعُـهَاۤاَذًى۝'],
+      ['لَهٗ ذُرِّيَّةٌضُعَفَاۤءُ۝', 'وَطَلْحٍ مَّنْضُوْدٍ۝', 'ـ ـ ـ ضُ'],
+      ['وَكُلًّاضَرَبْـنَالَهُ الْاَمْثَالَ وَكُلًّاتَـبَّـرْنَا تَـتْبِـيْرًا۝'],
+      ['وَقَالَ الظّٰلِمُوْنَ اِنْ تَـتَّبِعُوْنَ اِلَّارَجُلًا مَّسْحُوْرًا۝']
+    ],
+    [
+      ['وَمَنْ ضَلَّ فَقُلْ اِنَّـمَاۤاَنَامِنَ الْمُنْذِرِيْنَ۝'],
+      ['حَلٰلًاطَيِّبًـا۝', 'فِدْيَةٌطَعَامُـ', 'ـ ـ ـ طَ'],
+      ['اِنْ هُوَاِلَّاوَحْيٌ يُّـوْحٰى۝', '', 'وَمَايَنْطِقُ عَنِ الْهَـوٰى۝'],
+      ['وَمِنَ الَّـيْلِ فَاسْجُدْلَهٗ وَسَـبِّحْهٗ لَيْلًا طَوِيْلًا۝'],
+      ['وَوَقَعَ الْقَوْلُ عَلَـيْـهِمْـ بِـمَاظَلَـمُوْافَهُمْـ لَايَـنْطِقُوْنَ۝'],
+      ['عَلَى الْاَرَاۤئِكِ يَنْظُرُوْنَ۝', 'هُمْـ يَنْظُرُوْنَ', 'ـ ـ ـ ظُ'],
+      ['اِلَّامِرَاۤءً ظَاهِرًاوَّلَاتَسْتَفْتِ فِيْـهِمْـ مِّنْـهُمْـ اَحَدًا۝'],
+      ['قَالَ سَـنَنْظُرُ اَصَدَقْتَ اَمْـ كُنْتَ مِنَ الْكٰـذِبِيْنَ۝']
+    ],
+    [
+      ['فَتَـنْـفَعَهُ الذِّكْـرٰى', 'وَاَنْفِقُوْاخَيْرًالِّاَنْـفُسِكُمْـ', 'ـ ـ ـ فِ'],
+      ['وَاِذَاالْكَوَاكِبُ انْـتَـثَرَتْ۝', '', 'اِذَاالسَّمَاۤءُانْفَطَرَتْ۝'],
+      ['يٰرَبِّ اِنَّ قَوْمِى اتَّخَذُوْاهٰذَاالْـقُرْاٰنَ مَـهْجُوْرًا۝'],
+      ['اِنَّارَاۤدُّوْهُ اِلَـيْكِ وَجَاعِلُوْهُ مِنَ الْمُرْسَـلِيْنَ۝'],
+      ['بِاَيِّ ذَنْبٍ قُـتِلَتْ۝', 'مِنْ قَبْـلِكُمْـ', 'ـ ـ ـ قَ'],
+      ['يُوْفُوْنَ بِعَـهْدِاللّٰهِ وَلَايَـنْقُضُوْنَ الْمِـيْثَاقَ۝'],
+      ['وَالْـجَاۤنَّ خَلَـقْنٰـهُ مِنْ قَبْلُ مِنْ نَّارِالسَّمُوْمِـ۝'],
+      ['بَلْ كَذَّبُوْابِالْـحَـقِّ لَمَّاجَاۤءَهُمْـ فَـهُمْـ فِيْۤ اَمْرٍمَّرِيْـجٍ۝']
+    ],
+    [
+      ['خَيْرًاڪَثِيْرًا', 'فَـمَنْ كَانَ', 'ـ ـ ـ كَ'],
+      ['وَلَتَـعْلُنَّ عُلُـوًّاڪَبِيْرًا۝', '', 'وَفَاڪِـهَةٍكَثِـيْرَةٍ۝'],
+      ['اِنَّامَكَّـنَّالَهٗ فِى الْاَرْضِ وَاٰتَـيْنٰـهُ مِنْ كُلِّ شَيْءٍ سَـبَبًا۝'],
+      ['يٰۤاَ يُّـهَاالْمَلَؤُااِنِيْۤ اُلْقِيَ اِلَـيَّ كِتٰبٌ ڪَرِيْـمٌـ۝'],
+      ['اِذَاجَعَـلَهٗ نَارًاقَالَ اٰتُوْنِيْۤ اُفْرِغْ عَلَيْـهِ قِـطْرًا۝'],
+      ['اِنْ كَانَتْ اِلَّاصَـيْحَةًوَّاحِدَةًفَاِذَاهُمْـ خَامِدُوْنَ۝'],
+      ['يَوْمَـ يَرَوْنَـهَالَـمْـ يَلْبَـثُوْاۤاِلَّاعَشِيَّةً اَوْضُحٰـهَا۝'],
+      ['فَاِنَّ لَهٗ مَعِيْشَةً ضَنْكًاوَّنَحْشُرُهٗ يَوْمَـ الْقِيٰمَةِاَحْـمٰى۝']
+    ],
+    [
+      ['Boleh waqof boleh terus ۚ ', '', 'Harus waqof ۘ '],
+      ['Bukan tempat waqof utama terus ۙ ', '', 'Berhenti lebih utama ۗ '],
+      ['Dibaca terus lebih utama ۖ ', '', 'Boleh waqof disalah satu tanda tsb. ۛ  ۛ '],
+      ['فَتَوَلَّ عَنْـهُمْـۘ يَوْمَـ يَـدْعُ الدَّاعِ اِلٰى شَيْءٍ نُّـكُرٍ۝'],
+      ['وَاِنَّ رَبَّكَ هُوَيَحْشُرُهُمْـۚ اِنَّـهٗ حَكِيْـمٌـ عَلِيْـمٌـ۝'],
+      ['اَفَمَنْ يَّخْلُقُ كَمَنْ لَّايَخْلُقُۗ اَفَلَاتَذَكَّـرُوْنَ۝'],
+      ['اِلَّاامْرَاَتَـهٗ قَدَّرْنَۤـاۙ اِنَّـهَالَـمِنَ الْغٰـبِـرِيْنَ۝'],
+      ['ذٰلِكَ الْكِتٰبُ لَارَيْبَۛ فِيْـهِۛ هُدًى لِّلْـمُتَّقِيْنَ۝'],
+      ['وَاتْرُكِ الْـبَـحْرَرَهْوًاۖ اِنَّـهُمْـ جُنْدٌمُّغْـرَقُوْنَ۝']
+    ],
+    [
+      ['اَلَّذِيْنَ تَـتَوَفّٰـهُمُـ الْمَلٰۤـئِكَـةُ طَيِّبِـيْنَۙ يَقُوْلُوْنَ سَـلٰمٌ۝'],
+      ['مَتَاعٌ قَلِيْلٌۗ ثُـمَّـ مَأْوٰىـهُمْـ جَهَـنَّمُۚ وَبِئْسَ الْمِـهَادُ۝'],
+      ['قَالَ اَنْـتُمْ شَرٌّمَّكَانًاۖ وَّاللّٰهُ اَعْلَـمُـ بِـمَاتَصِفُوْنَ۝'],
+      ['اِنَّ وَعْدَاللّٰهِ حَقٌّۖ فَلَاتَغُـرَّنَّـكُمُـ الْـحَيٰوةُالدُّنْيَـاۖ۝'],
+      ['وَمَنْ يَّـبْتَـغِ غَـيْرَالْاِسْلَامِـ دِيْـنًافَلَـنْ يُّـقْبَـلَ مِنْـهُۚ۝'],
+      ['حَتّٰىۤ اِذَاسَاوٰى بَـيْنَ الصَّدَفَيْنِ قَالَ انْفُـخُوْاۗ۝'],
+      ['اِنْ يَّمْسَسْكُمْـ قَرْحٌ فَقَدْمَسَّ الْقَوْمَـ قَرْحٌ مِّثْـلُهٗۗ۝'],
+      ['اَللّٰهُ اَعْلَمُ بِمَالَبِثُوْاۚ لَهٗ غَيْبُ السَّمٰوٰتِ وَالْاَرْضِۗ۝']
+    ],
+    [
+      ['Cara mewaqofkannya adalah suara "hun" ditekan dan ... ditahan 2 harokat', '', 'ـ ـ ـ لَـهُنَّ'],
+      ['هُنَّ لِبَاسٌ لَّـكُمْـ وَاَنْـتُمْ لِبَاسٌ لَّـهُنَّۗ عَلِـمَـ اللّٰهُ اَنَّـكُمْـ'],
+      ['فَاِنْ لَّـمْـ يُصِبْـهَاوَابِلٌ فَطَلٌّۗ۝', '', 'كُنْـتُمْ تَخْـتَانُوْنَ اَنْفُسَكُمْـ۝'],
+      ['كَـمَايَقُوْمُـ الَّذِيْ يَتَـخَـبَّطُهُ الشَّـيْطٰنُ مِنَ الْـمَسِّۗ۝'],
+      ['وَمَالَـهُمْـ بِـهٖ مِنْ عِلْمٍـۗ اِنْ يَّـتَّـبِعُوْنَ اِلَّاالظَّـنَّۚ۝'],
+      ['فَقَالَ اَنْبِۢـئُوْنِيْ بِاَسْمَاۤءِهٰۤؤُلَاۤءِ اِنْ كُنْـتُمْ صٰدِقِيْنَ۝'],
+      ['قُلِ اللّٰـهُمَّـ مٰلِكَ الْـمُلْكِ تُـؤْتِى الْمُـلْكَ مَنْ تَشَاۤءُۗ۝'],
+      ['اِذَاقَـضٰۤى اَمْرًافَاِنَّـمَايَقُوْلُ لَهٗ كُنْ فَيَـكُوْنُ۝']
+    ],
+    [
+      ['Bila waqof, "an" dibaca "aa.." (panjang 2 harokat)', '', 'مَاءً۝ --> مَاءَا'],
+      ['وَبَثَّ مِنْـهُمَا رِجَالًاكَثِيْرًاوَّنِسَـاۤءً۝'],
+      ['اَلَّذِيْ يَنْعِقُ بِمَالَايَسْمَعُ اِلَّادُعَاۤءًوَّنِـدَاۤءً۝'],
+      ['قُلْ مَنْ رَّبُّ السَّمٰوٰتِ وَالْاَرْضِۗ قُلِ اللّٰهُۗ۝'],
+      ['وَاِذْقَالَ رَبُّكَ لِلْمَـلٰۤئِـكَـةِاِنِّيْ جَاعِلٌ فِى الْاَرْضِ خَلِيْـفَةًۗ'],
+      ['فَمَنِ اضْطُرَّغَـيْرَبَاغٍ وَّلَاعَادٍفَلَاۤاِثْمَ عَلَيْـهِۗ۝'],
+      ['اِنَّامَكَّـنَّالَهٗ فِى الْاَرْضِ وَاٰتَـيْنٰهُ مِنْ كُلِّ شَيْءٍ سَـبَـبًا۝'],
+      ['اَلَّذِيْ جَعَلَ لَـكُمُـ الْاَرْضَ فِرَاشًاوَّالسَّمَاۤءَبِنَاۤءًۗ۝']
+    ],
+    [
+      ['Bila waqof, suara "fat" ditekan dan di-ikuti bunyi حْ dengan suara rendah.', '', 'وَالْفَتْـحُ۝'],
+      ['وَّالشَّفْـعِ وَالْـوَتْـرِ۝', 'وَلَيَالٍ عَشْرٍۙ۝', 'وَالْفَجْرِۙ۝'],
+      ['فَسَبِّحْ بِحَمْدِرَبِّكَ وَاسْـتَغْفِرْهُۗ اِنَّهٗ كَانَ تَـوَّابًا۝'],
+      ['وَتَكُوْنُ الْجِبَالُ كَالْعِـهْنِ۝', '', 'تَكُوْنُ السَّمَاۤءُكَالْمُـهْلِ۝'],
+      ['وَالصّٰـبِـرِيْنَ فِى الْبَـأْسَاۤءِوَالضَّرَّاۤءِ وَحِيْنَ الْـبَـأْسِۗ۝'],
+      ['اَوَلَـمْـ يَرَوْااِلَى الطَّـيْرِ فَوْقَـهُمْـ صٰۤفّٰتٍ وَّيَقْبِضْنَۗ۝'],
+      ['اِعْلَـمُوْاۤاَنَّـمَاالْحَـيٰوةُالدُّنْـيَالَعِبٌ وَّلَـهْوٌوَّزِيْـنَـةٌ۝'],
+      ['اِصْطَفٰهُ عَلَـيْكُمْـ وَزَادَهٗ بَسْطَةًفِى الْعِـلْـمِـ وَالْـجِسْـمِۗ۝']
+    ],
+    [
+      ['Huruf-huruf Qolqolah bertasydid, bila diwaqofkan : Ditekan suaranya, ditahan 2 harokat, diikuti qolqolah', '', 'رَبِّ احْكُمْـ بِالْـحَـقِّۗ'],
+      ['مَوَاقِيْتُ لِلنَّاسِ وَالْحَـجِّۗ', '', 'اَبِيْ لَـهَبٍ وَّتَبَّ...'],
+      ['اِعْلَـمُوْاۤاَنَّ اللّٰهَ يُحْيِ الْاَرْضَ بَعْدَمَوْتِـهَـاۗ'],
+      ['نَحْنُ نَقُصُّ عَلَـيْكَ نَـبَـأَهُـمْـ بِالْـحَـقِّۚ'],
+      ['يٰۤاَيُّـهَاالَّذِيْنَ اٰمَنُوْاكُوْنُوْاقَوّٰمِيْنَ لِلّٰهِ شُـهَدَاۤءَ بِالْقِسْطِۖ'],
+      ['وَلَاتَعَاوَنُوْاعَلَى الْاِثْـمِـ وَالْعُدْوَانِۖ وَاتَّقُوااللّٰهَۗ'],
+      ['وَلِيَعْـلَـمَـ اللّٰهُ الَّذِيْـنَ اٰمَنُوْاوَيَـتَّخِذَمِنْكُمْـ شُـهَدَاۤءَۗ'],
+      ['تِـلْكَ اٰيٰتُ اللّٰهِ نَـتْـلُوْهَاعَلَـيْكَ بِالْـحَقِّۗ']
+    ],
+    [
+      ['وَبَـرًّابِوَالِدَتِيْۙ وَلَـمْـ يَجْـعَـلْنِيْ جَبَّارًاشَـقِيًّا۝'],
+      ['لَـهُمْـ عَذَابٌ شَدِيْدٌۗ وَاللّٰهُ عَزِيْزٌذُوانْـتِـقَامٍـ۝'],
+      ['لَاتُفْسِـدُوْافِى الْاَرْضِۙ قَالُوْاۤاِنَّـمَانَحْنُ مُصْلِحُوْنَ۝'],
+      ['وَلَـوْكُنْتَ فَظًّاغَلِـيْظَ الْـقَلْبِ لَانْفَضُّوْامِنْ حَوْ لِكَۗ'],
+      ['اَنْ تَـعْـتَـدُوْاۘ وَتَعَاوَنُوْاعَلَى الْـبِـرِّوَالتَّـقْوٰىۚ'],
+      ['ڪَدَأْبِ اٰلِ فِرْعَوْنَۙ وَالَّذِيْنَ مِنْ قَـبْلِـهِمْـۗ'],
+      ['اِنَّانَحْنُ نَـزَّلْـنَاالذِّڪْـرَوَاِنَّالَهٗ لَحٰـفِظُوْنَ۝'],
+      ['وَمِـمَّنْ حَوْلَـكُمْـ مِّنَ الْاَعْرَابِ مُنٰفِقُوْنَۛ وَمِنْ'],
+      ['اَهْلِ الْمَدِيْنَـةِۛ مَرَدُوْاعَلَى النِّفَاقِۗ لَاتَعْلَـمُـهُمْـۗ']
+    ],
+    [
+      ['فِيْ قُلُوْبِـهِمْـ مَّرَضٌۙ فَـزَادَهُـمُـ اللّٰهُ مَـرَضًاۚ'],
+      ['وَلَـهُمْـ عَذَابٌ اَلِيْـمٌـۙ بِۢـمَاكَانُوْايَـكْـذِبُوْنَ۝'],
+      ['وَمَايَأْتِيْـهِمْـ مِّنْ رَّسُوْلٍ اِلَّاكَانُوْابِهٖ يَسْـتَهْزِءُوْنَ۝'],
+      ['لَاۤاِكْرَاهَ فِى الدِّيْنِۗ قَدْتَّـبَـيَّنَ الرُّشْدُمِنَ الْغَيِّۚ'],
+      ['قٰنِتٰتٍ تٰۤئِبٰتٍ عٰبِـدٰتٍ سٰۤئِحٰتٍ ثَـيِّـبٰتٍ وَّاَبْـكَارًا۝'],
+      ['Sebelum EBTA, santri agar dikenalkan dan diajarkan huruf-huruf awal surat dibawah ini, dengan bacaan yang benar-benar betul.'],
+      ['الۤـمّۤـرٰ', 'الۤـرٰ', 'الۤـمّۤصۤ', 'الۤـمّۤ'],
+      ['طٰسۤ', 'طٰسۤـمّۤ', 'طٰهٰ', 'كۤـهٰيٰعۤصۤ'],
+      ['نۤ', 'عۤسۤقۤ', 'حٰـمۤـ', 'ۤص', 'يٰـسۤ']
+    ],
+    [
+      ['EBTA, jilid 6 ini tidak mutlak pada halaman 29 s/d 32 saja. Tetapi bila diperlukan boleh halaman-halaman lain untuk meyakinkan kemampuan bacaan santri. Bilamana telah benar semuanya barulah di LULUS-kan.'],
+      ['الۤـمّۤـۚ۝', '', 'بِسْـمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْـمِـ۝'],
+      ['ذٰلِكَ الْكِتٰبُ لَارَيْبَۛ فِيْـهِۛ هُدًى لِّلْـمُتَّـقِيْنَ۝'],
+      ['وَلَقَدْاٰتَـيْنَالُقْـمٰنَ الْـحِكْمَـةَاَنِ اشْكُرْلِلّٰهِۗ وَمَنْ يَّشْكُرْ'],
+      ['فَاِنَّـمَايَشْكُرُلِنَفْسِهٖۚ وَمَنْ كَفَرَفَاِنَّ اللّٰهَ غَنِيٌّ حَـمِيْدٌ۝'],
+      ['وَاِذْقَالَ لُقْـمٰنُ لِابْنِـهٖ وَهُوَيَعِظُهٗ يٰـبُـنَيَّ لَاتُسْرِكْ'],
+      ['وَوَصَّيْنَاالْاِنْسَانَ', '', 'بِاللّٰهِۗ اِنَّ الشِرْكَ لَظُـلْـمٌـ عَظِيْمٌـ۝'],
+      ['بِوَالِدَيْهِۚ حَـمَلَتْـهُ اُمُّهٗ وَهْنًاعَلٰى وَهْنٍ وَّفِصٰلُهٗ'],
+      ['فِيْ عَامَـيْنِ اَنِ اشْكُرْلِيْ وَلِوَالِدَيْكَۗ اِلَيَّ الْمَصِيْرُ۝']
+    ],
+    [
+      ['وَاِنْ جَاهَدٰكَ عَلٰۤى اَنْ تُشْرِكَ بِيْ مَالَيْسَ لَكَ بِهٖ'],
+      ['عِلْـمٌـ فَلَاتُطِعْـهُمَاوَصَاحِبْهُمَافِى الدُّنْـيَـامَعْرُوْفًاۖ وَّاتَّبِــعْ'],
+      ['سَـبِيْلَ مَنْ اَنَابَ اِلَيَّۚ ثُـمَّ اِلَيَّ مَرْجِعُكُمْـ فَاُنَـبِّئُـكُمْـ بِـمَا'],
+      ['يٰـبُـنَيَّ اِنَّـهَاۤاِنْ تَكُ مِثْقَالَ حَبَّةٍ', '', 'كُنْتُـمْـ تَعْمَـلُـوْنَ۝'],
+      ['مِّنْ خَرْدَلٍ فَتَكُنْ فِيْ صَخْـرَةٍاَوْفِى السَّمٰوٰتِ اَوْفِى'],
+      ['الْاَرْضِ يَـأْتِ بِـهَااللّٰهُۗ اِنَّ اللّٰهَ لَطِيْفٌ خَبِـيْرٌ۝'],
+      ['يٰـبُـنَيَّ اَقِـمِـ الصَّلٰوةَ وَأْمُرْ بِالْـمَعْرُوْفِ وَانْـهَ'],
+      ['عَنِ الْـمُنْكَرِوَاصْبِرْعَلٰى مَاۤاَصَابَكَۗ اِنَّ ذٰلِكَ'],
+      ['وَلَاتُصَعِّرْ خَدَّكَ لِلنَّـاسِ', '', 'مِنْ عَزْمِـ الْاُمُوْرِ۝']
+    ],
+    [
+      ['وَلَاتَمْشِ فِى الْاَرْضِ مَـرَحًاۗ اِنَّ اللّٰهَ لَايُحِبُّ كُلَّ'],
+      ['وَاقْصِدْفِيْ مَشْيِكَ وَاغْضُضْ', '', 'مُخْتَالٍ فَـخُوْرٍۚ۝'],
+      ['مِنْ صَوْتِكَۗ اِنَّ اَنْـكَرَالْاَصْوَاتِ لَصَوْتُ الْحَـمِيْرِ۝'],
+      ['اٰمَنَ الرَّسُوْلُ بِمَاۤاُنْزِلَ اِلَيْهِ مِنْ رَّبِّـهٖ وَالْمُؤْمِنُوْنَۗ'],
+      ['كُلٌّ اٰمَنَ بِاللّٰهِ وَمَلٰۤئِكَتِـهٖ وَكُتُبِـهٖ وَرُسُلِهٖۗ لَانُفَرِّقُ'],
+      ['بَـيْنَ اَحَدٍمِّنْ رُّسُـلِهٖۗ وَقَالُوْاسَـمِعْنَاوَاَطَعْنَا'],
+      ['لَايُـكَلِّفُ اللّٰهُ', '', 'غُفْرَانَكَ رَبَّـنَاوَاِلَيْكَ الْمَصِيْرُ۝'],
+      ['نَفْسًااِلَّاوُسْعَـهَاۗ لَهَامَاڪَسَبَتْ وَعَلَـيْـهَا'],
+      ['مَااكْتَسَبَتْۗ رَبَّـنَالَاتُـؤَاخِذْنَاۤاِنْ نَّسِـيْنَاۤاَوْ']
+    ],
+    [
+      ['اَخْطَأْنَاۚ رَبَّنَـاوَلَاتَحْـمِلْ عَلَيْنَاۤاِصْرًاڪَمَا'],
+      ['حَمَـلْتَهٗ عَلَى الَّذِيْنَ مِنْ قَبْـلِنَاۚ رَبَّنَاوَلَاتُحَـمِّلْنَا'],
+      ['مَالَاطَاقَةَ لَنَابِهٖۚ وَاعْفُ عَنَّاۗ وَاغْفِرْلَنَاۗ'],
+      ['وَارْحَـمْنَاۗ اَنْتَ مَوْلٰنَافَانْصُرْنَاعَلَى الْقَوْمِـ الْكٰفِرِيْنَ۝'],
+      ['', 'PENTING', ''],
+      ['Bila telah benar semua, syukur lancar : LULUS'],
+      ['Bila terpaksanya belum lancar, tetapi benar semuanya, bisa di-LULUS-kan juga. Insya Allah setelah tadarus beberapa juz akan lancar sendiri.'],
+      ['Khusus bacaan ikhfa\'. bila sekiranya belum menguasai betul boleh di LULUS-kan pula. Insya Allah akan bisa dikuasai sambil dibimbing dalam bertadarus. '],
+      ['Pelajaran Ilmu Tajwid diberikan setelah bacaan santri LANCAR dan BENAR semuanya.']
+    ]
+  ];
+
+  let fontSize = 32; // ukuran awal
+  //let currentPage = 0;
+  let currentPage = parseInt(localStorage.getItem("iqro3_lastPage")) || 0;
+  const audio = new Audio();
+
+  function renderPage() {
+    const content = document.getElementById('content');
+    content.innerHTML = '';
+    const progress = ((currentPage + 1) / pages.length) * 100;
+    document.getElementById("progressFill").style.width = progress + "%";
+
+    pages[currentPage].forEach(line => {
+      const lineDiv = document.createElement('div');
+      lineDiv.className = 'line';
+
+      line.forEach(text => {
+        const span = document.createElement('div');
+        span.className = 'item';
+        span.style.fontSize = fontSize + "px";
+        //span.textContent = text;
+        span.innerHTML = text;
+        //span.onclick = () => play(span, text);
+        span.onclick = () => play(span, span.innerText);
+        lineDiv.appendChild(span);
+      });
+
+      content.appendChild(lineDiv);
+    });
+
+    document.getElementById('jumpPage').value = currentPage + 1;
+    document.getElementById('totalPage').textContent = pages.length;
+
+    // tandai halaman aktive
+  updateActivePage();
+
+  // simpan halaman terakhir
+localStorage.setItem("iqro3_lastPage", currentPage);
+  }
+
+
+//  function changePage(direction) {
+//    const newPage = currentPage + direction;
+//    if (newPage >= 0 && newPage < pages.length) {
+//      currentPage = newPage;
+//      renderPage();
+//    }
+//  }
+function changePage(direction) {
+  const newPage = currentPage + direction;
+  if (newPage >= 0 && newPage < pages.length) {
+
+    const content = document.getElementById('content');
+
+    // tentukan arah animasi
+    const animationClass = direction > 0 ? 
+        "slide-in-right" : 
+        "slide-in-left";
+
+    content.classList.remove("slide-in-right", "slide-in-left");
+
+    currentPage = newPage;
+    renderPage();
+
+    // trigger animasi
+    void content.offsetWidth; // reset animation
+    content.classList.add(animationClass);
+  }
+}
+
+document.getElementById('jumpPage').addEventListener('change', function () {
+  const page = parseInt(this.value) - 1;
+  if (page >= 0 && page < pages.length) {
+
+    const content = document.getElementById('content');
+
+    content.classList.remove("slide-in-right", "slide-in-left");
+
+    currentPage = page;
+    renderPage();
+
+    void content.offsetWidth;
+    content.classList.add("slide-in-right");
+
+  } else {
+    this.value = currentPage + 1;
+  }
+});
+
+  // Lompat langsung ke halaman
+//  document.getElementById('jumpPage').addEventListener('change', function () {
+//    const page = parseInt(this.value) - 1;
+//    if (page >= 0 && page < pages.length) {
+//      currentPage = page;
+//      renderPage();
+//    } else {
+//      this.value = currentPage + 1;
+//    }
+//  });
+
+  function play(el, text) {
+    document.querySelectorAll('.item').forEach(item => item.classList.remove('active'));
+    el.classList.add('active');
+
+    const soundEnabled = document.getElementById('soundToggle').checked;
+    if (!soundEnabled) return;
+
+    // STOP suara sebelumnya
+    audio.pause();
+    audio.currentTime = 0;
+
+    // Encode supaya karakter Arab aman
+    const fileName = encodeURIComponent(text) + ".mp3";
+    audio.src = "audio/" + fileName;
+    audio.play().catch(err => console.log("Audio tidak ditemukan:", err));
+  }
+
+  function changeFont(amount) {
+  fontSize += amount;
+
+  if (fontSize < 20) fontSize = 20;   // batas minimum
+  if (fontSize > 80) fontSize = 80;   // batas maksimum
+
+  renderPage();  // render ulang supaya ukuran berubah
+}
+
+function resetFont() {
+  fontSize = 32;
+  renderPage();
+}
+
+function toggleMenu() {
+  document.getElementById("sidebar").classList.toggle("active");
+  document.getElementById("overlay").classList.toggle("active");
+}
+
+  renderPage();
+</script>
+
+<script>
+  // Fade in saat halaman selesai load
+  window.addEventListener("load", function () {
+    document.body.classList.add("fade-in");
+  });
+
+  // Tangkap semua link
+  document.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", function (e) {
+      const href = this.getAttribute("href");
+
+      // kalau link internal
+      if (href && !href.startsWith("#") && !this.hasAttribute("target")) {
+        e.preventDefault();
+        document.body.classList.remove("fade-in");
+        document.body.classList.add("fade-out");
+
+        setTimeout(() => {
+          window.location.href = href;
+        }, 400);
+      }
+    });
+  });
+</script>
+<script>
+// === WARNA PENUNJUK ===
+const colorOptions = document.querySelectorAll(".color-option");
+
+colorOptions.forEach(option => {
+  option.addEventListener("click", function() {
+    const color = this.getAttribute("data-color");
+
+    // ubah warna
+    document.documentElement.style.setProperty("--active-color", color);
+
+    // simpan ke localStorage
+    localStorage.setItem("activeColor", color);
+  });
+});
+
+// load warna tersimpan saat buka halaman
+window.addEventListener("load", function() {
+  const savedColor = localStorage.getItem("activeColor");
+  if (savedColor) {
+    document.documentElement.style.setProperty("--active-color", savedColor);
+  }
+});
+
+// === WARNA TULISAN AKTIF ===
+const textColorOptions = document.querySelectorAll(".text-color-option");
+
+textColorOptions.forEach(option => {
+  option.addEventListener("click", function() {
+    const color = this.getAttribute("data-color");
+
+    document.documentElement.style.setProperty("--active-text", color);
+
+    localStorage.setItem("activeTextColor", color);
+  });
+});
+
+// load saat halaman dibuka
+window.addEventListener("load", function() {
+  const savedTextColor = localStorage.getItem("activeTextColor");
+  if (savedTextColor) {
+    document.documentElement.style.setProperty("--active-text", savedTextColor);
+  }
+});
+
+</script>
+<script>
+const drawer = document.getElementById("pageDrawer");
+
+document.getElementById("openPageList").addEventListener("click", () => {
+  drawer.classList.toggle("open");
+});
+//const drawer = document.getElementById("pageDrawer");
+//const openBtn = document.getElementById("openPageList");
+
+//openBtn.addEventListener("click", function() {
+//  drawer.classList.toggle("open");
+//});
+
+//function goToPage(pageNumber) {
+//  currentPage = pageNumber;
+//  renderPage();
+//  drawer.classList.remove("open");
+//}
+
+//function goToPage(index) {
+//  currentPage = index;
+//  renderPage();
+
+  // 🔥 tutup drawer setelah klik
+   //document.getElementById("pageDrawer").classList.remove("open");
+   //document.querySelector(".overlay").classList.remove("show");
+//}
+function goToPage(index) {
+  currentPage = index;
+  renderPage();
+
+  // hanya tutup kalau layar kecil
+  if (window.innerWidth < 768) {
+    document.getElementById("pageDrawer").classList.remove("open");
+  }
+}
+//const pageList = document.querySelector(".page-list");
+
+//pages.forEach((_, index) => {
+//  const li = document.createElement("li");
+//  li.textContent = "Halaman " + (index + 1);
+//  li.onclick = () => goToPage(index + 1);
+//  pageList.appendChild(li);
+//});
+//const pageList = document.getElementById("pageList");
+
+function generatePageList() {
+  pageList.innerHTML = "";
+
+  pages.forEach((_, index) => {
+    const li = document.createElement("li");
+
+    li.textContent = "Halaman " + (index + 1);
+
+    li.addEventListener("click", function() {
+      currentPage = index;
+      renderPage();
+      drawer.classList.remove("open");
+    });
+
+    pageList.appendChild(li);
+  });
+}
+
+function updateActivePage() {
+  const items = document.querySelectorAll("#pageList li");
+
+  items.forEach((li, index) => {
+    li.classList.toggle("active-page", index === currentPage);
+  });
+}
+
+generatePageList();
+
+function updateActivePage() {
+  const items = document.querySelectorAll("#pageList li");
+
+  items.forEach((li, index) => {
+    if (index === currentPage) {
+      li.classList.add("active-page");
+
+      // 🔥 auto scroll ke halaman aktif
+      li.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+
+    } else {
+      li.classList.remove("active-page");
+    }
+  });
+}
+
+//document.querySelectorAll(".page-list li").forEach((li, i) => {
+//  li.classList.toggle("active-page", i === currentPage);
+//});
+
+let touchStartX = 0;
+let touchEndX = 0;
+
+const contentArea = document.querySelector(".content-area");
+
+contentArea.addEventListener("touchstart", e => {
+  touchStartX = e.changedTouches[0].screenX;
+});
+
+contentArea.addEventListener("touchend", e => {
+  touchEndX = e.changedTouches[0].screenX;
+  handleSwipe();
+});
+
+function handleSwipe() {
+  const swipeDistance = touchEndX - touchStartX;
+
+  if (swipeDistance > 80) {
+    changePage(-1); // swipe kanan
+  }
+
+  if (swipeDistance < -80) {
+    changePage(1); // swipe kiri
+  }
+}
+</script>
+<!--
+<script>
+  let lastScroll = 0;
+
+const header = document.querySelector("header");
+const footer = document.querySelector("footer");
+
+document.querySelector(".content-area").addEventListener("scroll", function () {
+
+  const currentScroll = this.scrollTop;
+
+  if (currentScroll > lastScroll) {
+    header.style.transform = "translateY(-100%)";
+    footer.style.transform = "translateY(100%)";
+  } else {
+    header.style.transform = "translateY(0)";
+    footer.style.transform = "translateY(0)";
+  }
+
+  lastScroll = currentScroll;
+});
+</script>
+-->
+</body>
+</html>

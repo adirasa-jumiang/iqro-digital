@@ -930,7 +930,8 @@ document.getElementById('jumpPage').addEventListener('change', function () {
 
     // Encode supaya karakter Arab aman
     const fileName = encodeURIComponent(text) + ".mp3";
-    audio.src = "audio/" + fileName;
+    //audio.src = "audio/" + fileName;
+    audio.src = "https://github.com/miftahulkhoiromben-sketch/audio-iqro/tree/d74869afed08ab9b898429035c75c3c226e2971a/audio01" + fileName;
     audio.play().catch(err => console.log("Audio tidak ditemukan:", err));
   }
 
